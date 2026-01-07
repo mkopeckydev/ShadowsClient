@@ -10,7 +10,7 @@
             <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="280" />
+            <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
             <RowDefinition Height="Auto" />
@@ -24,7 +24,7 @@
 
         <StackLayout Grid.Row="2" x:Name="stCharacters" VerticalOptions="Fill"></StackLayout>
 
-        <ActivityIndicator Grid.Row="3" x:Name="aiLoginPage" HeightRequest="30" />
+        <ActivityIndicator Grid.Row="3" x:Name="aiLoginPage" />
 
         <Label Grid.Row="4" x:Name="lblVersion" Text="Verze" Style="{StaticResource footerText}" />
 
