@@ -1,0 +1,40 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<controls:BaseContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Shadows.Client.Pages.CustomCounterList"
+             xmlns:controls="clr-namespace:Shadows.Client.Controls"
+             xmlns:apiModel="clr-namespace:Shadows.Api.WebApi;assembly=Shadows.Api">
+    <Grid Style="{StaticResource mainGrid}">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <controls:PageHeader Grid.Row="0" Grid.Column="0" Caption="Počítadla" x:Name="pageHeader" BackButton="True" PlusButton="True" PlusClicked="PageHeader_PlusClicked" />
+
+        <CollectionView Grid.Row="1" Grid.Column="0" x:Name="cvCounters" Style="{StaticResource innerCollection}">
+            <CollectionView.ItemTemplate>
+                <DataTemplate x:DataType="apiModel:CustomCounter">
+                    <Grid VerticalOptions="Center" HeightRequest="40">
+                        <Grid.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="Counter_Tapped" CommandParameter="{Binding .}" />
+                        </Grid.GestureRecognizers>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="30" />
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+
+                        <Image Grid.Row="0" Grid.Column="0" Style="{StaticResource listRowIcon}" />
+                        <Label Grid.Row="0" Grid.Column="1" VerticalOptions="Center" Text="{Binding Caption}" />
+                    </Grid>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+    </Grid>
+</controls:BaseContentPage>

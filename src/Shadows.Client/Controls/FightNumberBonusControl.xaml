@@ -1,0 +1,45 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Shadows.Client.Controls.FightNumberBonusControl">
+    <Grid Margin="0,5,0,5">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <Label Grid.Row="0" Grid.Column="0" x:Name="lblCaption" Grid.ColumnSpan="5" Style="{StaticResource subCaption}" HorizontalOptions="Start" HorizontalTextAlignment="Start" />
+
+        <Label Grid.Row="1" Grid.Column="0" x:Name="lblValue1" HorizontalOptions="Center" FontAttributes="Bold" />
+        <Label Grid.Row="1" Grid.Column="1" x:Name="lblValue2" HorizontalOptions="Center" FontAttributes="Bold" />
+        <Label Grid.Row="1" Grid.Column="2" x:Name="lblValue3" HorizontalOptions="Center" FontAttributes="Bold" />
+        <Label Grid.Row="1" Grid.Column="3" x:Name="lblValue4" HorizontalOptions="Center" FontAttributes="Bold" />
+        <Label Grid.Row="1" Grid.Column="4" x:Name="lblValue5" HorizontalOptions="Center" FontAttributes="Bold" />
+
+        <Grid x:Name="grdBonus" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="5">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+        </Grid>
+
+    </Grid>
+</ContentView>

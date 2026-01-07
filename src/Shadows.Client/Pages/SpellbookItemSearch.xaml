@@ -1,0 +1,61 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<controls:BaseContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Shadows.Client.Pages.SpellbookItemSearch"
+             xmlns:controls="clr-namespace:Shadows.Client.Controls"
+             xmlns:apiModel="clr-namespace:Shadows.Api.WebApi;assembly=Shadows.Api">
+    <Grid Style="{StaticResource mainGrid}">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <controls:PageHeader Grid.Row="0" Grid.Column="0" Caption="Kouzla" x:Name="pageHeader" SearchButton="True" SearchClicked="PageHeader_SearchClicked" />
+
+        <Grid Grid.Row="1" Grid.Column="0" Style="{StaticResource innerGrid}">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+
+            <Label Grid.Row="0" Grid.Column="0" Text="Hledat: " />
+            <Border Grid.Row="0" Grid.Column="1" Style="{StaticResource borderInput}">
+                <Entry x:Name="txtSearch" Completed="PageHeader_SearchClicked" MaxLength="64" />
+            </Border>
+        </Grid>
+
+        <CollectionView Grid.Row="2" Grid.Column="0" x:Name="cvSearch" Style="{StaticResource innerCollection}">
+            <CollectionView.ItemTemplate>
+                <DataTemplate x:DataType="apiModel:SpellbookItem">
+                    <Grid VerticalOptions="Center" HeightRequest="75">
+                        <Grid.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="Spellbook_Tapped" CommandParameter="{Binding .}" />
+                        </Grid.GestureRecognizers>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+
+                        <Border Grid.Row="0" Grid.Column="0" Grid.RowSpan="2" Style="{StaticResource borderImage}">
+                            <Image Source="scroll.png" Style="{StaticResource listRowImage}" />
+                        </Border>
+                        <Label Grid.Row="0" Grid.Column="1" Text="{Binding Caption}" FontAttributes="Bold" Margin="5,0,0,0" />
+                        <Label Grid.Row="1" Grid.Column="1" Text="{Binding SpellGroup}" Margin="5,0,0,0" />
+                    </Grid>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+
+    </Grid>
+</controls:BaseContentPage>

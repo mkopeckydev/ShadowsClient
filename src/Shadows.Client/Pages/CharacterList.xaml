@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<controls:BaseContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Shadows.Client.Pages.CharacterList"
+             xmlns:controls="clr-namespace:Shadows.Client.Controls"
+             xmlns:adMob="clr-namespace:Plugin.MauiMtAdmob.Controls;assembly=Plugin.MauiMTAdmob">
+
+    <Grid Style="{StaticResource mainGrid}">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="280" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="70" />
+        </Grid.RowDefinitions>
+
+        <Image Grid.Row="0" Grid.Column="0" Source="logo.png" x:Name="imgBanner" HeightRequest="280" />
+
+        <Label Grid.Row="1" Text="Postavy" Style="{StaticResource pageCaption}" />
+
+        <StackLayout Grid.Row="2" x:Name="stCharacters" VerticalOptions="Fill"></StackLayout>
+
+        <ActivityIndicator Grid.Row="3" x:Name="aiLoginPage" HeightRequest="30" />
+
+        <Label Grid.Row="4" x:Name="lblVersion" Text="Verze" Style="{StaticResource footerText}" />
+
+        <adMob:MTAdView Grid.Row="5" x:Name="adBanner" AdsFailedToLoad="adBanner_AdsFailedToLoad" Margin="5"></adMob:MTAdView>
+        
+    </Grid>
+
+</controls:BaseContentPage>

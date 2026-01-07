@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<controls:BaseContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Shadows.Client.Pages.CharacterAdminPage"
+             xmlns:controls="clr-namespace:Shadows.Client.Controls">
+    <Grid Style="{StaticResource mainGrid}">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <controls:PageHeader Grid.Row="0" Grid.Column="0" Caption="Administrace postavy" x:Name="pageHeader" />
+
+        <Label Grid.Row="1" x:Name="lblCharacterName" Style="{StaticResource subCaption}" />
+
+        <VerticalStackLayout Grid.Row="2" >
+            <Button Text="Počítadla" Style="{StaticResource menuButton}" Clicked="btnCounters_Clicked" />
+            <Button Text="Bojová čísla" Style="{StaticResource menuButton}" Clicked="btnFightNumbers_Clicked" />
+            <Button Text="Činnosti" Style="{StaticResource menuButton}" Clicked="btnCharacterActivity_Clicked" />
+            <Button Text="Nastavení účtu / úprava postavy" Style="{StaticResource menuButton}" Clicked="btnEditCharacter_Clicked" />
+            <Button Text="Odhlásit / výběr postav" Style="{StaticResource menuButton}" Clicked="btnCharacterList_Clicked" />
+        </VerticalStackLayout>
+
+        <Label Grid.Row="3" Style="{StaticResource subCaption}" Text="Systémové funkce" Margin="0,20,0,0" />
+
+        <VerticalStackLayout Grid.Row="4" >
+            <Button Text="Reklama" Style="{StaticResource menuButton}" Clicked="btnAd_Clicked" x:Name="btnAd" />
+            <Button Text="Poslední log" Style="{StaticResource menuButton}" Clicked="btnShowLog_Clicked" />
+        </VerticalStackLayout>
+
+    </Grid>
+</controls:BaseContentPage>

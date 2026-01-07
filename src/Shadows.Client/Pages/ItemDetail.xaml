@@ -1,0 +1,73 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<controls:BaseContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Shadows.Client.Pages.ItemDetail"
+             xmlns:controls="clr-namespace:Shadows.Client.Controls"
+             xmlns:apiModel="clr-namespace:Shadows.Api.WebApi;assembly=Shadows.Api"
+             x:DataType="apiModel:ItemData">
+
+    <Grid Style="{StaticResource mainGrid}">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <controls:PageHeader Grid.Row="0" Grid.Column="0" x:Name="pageHeader" BackButton="True" DoneButton="True" DoneClicked="pageHeader_DoneClicked" />
+
+        <ScrollView Grid.Row="1" Grid.Column="0">
+            <VerticalStackLayout>
+
+                <Border Style="{StaticResource borderImage}" x:Name="bMainImage">
+                    <Image x:Name="imgMainImage" HeightRequest="160" />
+                </Border>
+
+                <Label Text="{Binding ValueSum}" Style="{StaticResource text}" HorizontalOptions="Center" HorizontalTextAlignment="Center" />
+                <Label Text="{Binding BonusLevel}" Style="{StaticResource text}" HorizontalOptions="Center" HorizontalTextAlignment="Center" />
+
+                <CollectionView x:Name="cvDetail" VerticalScrollBarVisibility="Never">
+                    <CollectionView.ItemsLayout>
+                        <LinearItemsLayout Orientation="Vertical"  />
+                    </CollectionView.ItemsLayout>
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate x:DataType="apiModel:ItemRow">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto" />
+                                </Grid.RowDefinitions>
+                                <Border Grid.Column="0" Grid.Row="0" Style="{StaticResource borderText}">
+                                    <VerticalStackLayout>
+                                        <Label Text="{Binding InfoCaptionCleared}" IsVisible="{Binding InfoCaptionVisible}" Style="{StaticResource subCaption}" />
+                                        <Label Text="{Binding InfoTextCleared}" IsVisible="{Binding InfoTextVisible}" Style="{StaticResource text}" />
+                                    </VerticalStackLayout>
+                                </Border>
+                            </Grid>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+
+                <Border Style="{StaticResource borderText}">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+                        <Label Grid.Row="0" Grid.Column="0" Text="Poznámka" Style="{StaticResource subCaption}" />
+                        <Editor Grid.Row="1" Grid.Column="0" x:Name="eNote" HeightRequest="400" />
+                    </Grid>
+                </Border>
+
+            </VerticalStackLayout>
+        </ScrollView>
+
+    </Grid>
+
+</controls:BaseContentPage>

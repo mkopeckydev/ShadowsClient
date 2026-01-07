@@ -1,0 +1,100 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<controls:BaseContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Shadows.Client.Pages.FightNumberDetail"
+             xmlns:controls="clr-namespace:Shadows.Client.Controls"
+             xmlns:apiModel="clr-namespace:Shadows.Api.WebApi;assembly=Shadows.Api"
+             x:DataType="apiModel:FightNumber">
+    <Grid Style="{StaticResource mainGrid}">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <controls:PageHeader Grid.Row="0" Grid.Column="0" Caption="Editace bojového čísla" x:Name="pageHeader" BackButton="True" DoneButton="True" DeleteButton="True" 
+                             DoneClicked="pageHeader_DoneClicked" DeleteClicked="pageHeader_DeleteClicked" />
+
+        <Grid Grid.Row="1" Grid.Column="0" Style="{StaticResource innerGrid}">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="3*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+
+            <Label Grid.Row="0" Grid.Column="0" Text="Název" />
+            <Border Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="5" Style="{StaticResource borderInput}">
+                <Entry Text="{Binding Caption}" MaxLength="64" />
+            </Border>
+
+            <Label Grid.Row="1" Grid.Column="0" Text="Pořadí" />
+            <Border Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="5" Style="{StaticResource borderInput}">
+                <Entry Text="{Binding Ordering}" MaxLength="6" Keyboard="Numeric" />
+            </Border>
+
+            <Label Grid.Row="2" Grid.Column="0" Text="Název pole" />
+            <Border Grid.Row="2" Grid.Column="1" Style="{StaticResource borderInput}">
+                <Entry Text="{Binding BaseValueCaption1}" MaxLength="16" HorizontalTextAlignment="Center" />
+            </Border>
+            <Border Grid.Row="2" Grid.Column="2" Style="{StaticResource borderInput}">
+                <Entry Text="{Binding BaseValueCaption2}" MaxLength="16" HorizontalTextAlignment="Center" />
+            </Border>
+            <Border Grid.Row="2" Grid.Column="3" Style="{StaticResource borderInput}">
+                <Entry Text="{Binding BaseValueCaption3}" MaxLength="16" HorizontalTextAlignment="Center" />
+            </Border>
+            <Border Grid.Row="2" Grid.Column="4" Style="{StaticResource borderInput}">
+                <Entry Text="{Binding BaseValueCaption4}" MaxLength="16" HorizontalTextAlignment="Center" />
+            </Border>
+            <Border Grid.Row="2" Grid.Column="5" Style="{StaticResource borderInput}">
+                <Entry Text="{Binding BaseValueCaption5}" MaxLength="16" HorizontalTextAlignment="Center" />
+            </Border>
+
+            <Label Grid.Row="3" Grid.Column="0" Text="Zákl.hodnota" />
+            <Border Grid.Row="3" Grid.Column="1" Style="{StaticResource borderInput}">
+                <Entry Text="{Binding BaseValue1}" MaxLength="6" Keyboard="Numeric" HorizontalTextAlignment="Center" />
+            </Border>
+            <Border Grid.Row="3" Grid.Column="2" Style="{StaticResource borderInput}">
+                <Entry Text="{Binding BaseValue2}" MaxLength="6" Keyboard="Numeric" HorizontalTextAlignment="Center" />
+            </Border>
+            <Border Grid.Row="3" Grid.Column="3" Style="{StaticResource borderInput}">
+                <Entry Text="{Binding BaseValue3}" MaxLength="6" Keyboard="Numeric" HorizontalTextAlignment="Center" />
+            </Border>
+            <Border Grid.Row="3" Grid.Column="4" Style="{StaticResource borderInput}">
+                <Entry Text="{Binding BaseValue4}" MaxLength="6" Keyboard="Numeric" HorizontalTextAlignment="Center" />
+            </Border>
+            <Border Grid.Row="3" Grid.Column="5" Style="{StaticResource borderInput}">
+                <Entry Text="{Binding BaseValue5}" MaxLength="6" Keyboard="Numeric" HorizontalTextAlignment="Center" />
+            </Border>
+        </Grid>
+
+        <Grid Grid.Row="2" Grid.Column="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+            <Label Grid.Row="0" Grid.Column="0" Style="{StaticResource subCaption}" Text="Bonusy k bojovým číslům" HorizontalOptions="Start" />
+            <ImageButton Grid.Row="0" Grid.Column="1" Source="plus.png" Style="{StaticResource iconButton}" Clicked="btnAddBonus_Clicked" />
+        </Grid>
+
+        <ScrollView Grid.Row="3" Grid.Column="0">
+            <StackLayout x:Name="slBonus" Style="{StaticResource innerStack}" />
+        </ScrollView>
+        
+    </Grid>
+</controls:BaseContentPage>

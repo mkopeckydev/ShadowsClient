@@ -1,0 +1,219 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<?xaml-comp compile="true" ?>
+<ResourceDictionary 
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
+
+    <!-- pages, grids -->
+    <Style ApplyToDerivedTypes="True" TargetType="ContentPage">
+        <Setter Property="BackgroundColor" Value="{StaticResource BackgroundColor}" />
+    </Style>
+    <Style x:Key="mainGrid" TargetType="Grid">
+        <Setter Property="Padding" Value="8,8,8,8" />
+        <Setter Property="Margin" Value="0,0,0,0" />
+        <Setter Property="VerticalOptions" Value="Fill" />
+    </Style>
+    <Style x:Key="innerGrid" TargetType="Grid">
+        <Setter Property="Margin" Value="2,2,2,2" />
+    </Style>
+    <Style x:Key="innerCollection" TargetType="CollectionView">
+        <Setter Property="Margin" Value="2,2,2,2" />
+    </Style>
+    <Style x:Key="innerStack" TargetType="StackLayout">
+        <Setter Property="Margin" Value="2,2,2,2" />
+    </Style>
+    
+    <!-- labels -->
+    <Style ApplyToDerivedTypes="True" TargetType="Label">
+        <Setter Property="TextColor" Value="{StaticResource LabelColor}" />
+        <Setter Property="FontFamily" Value="Calibri" />
+        <Setter Property="FontSize" Value="16" />
+        <Setter Property="HorizontalOptions" Value="Start" />
+        <Setter Property="VerticalOptions" Value="Center" />
+        <Setter Property="Margin" Value="1" />
+    </Style>
+    <Style x:Key="labelRed" TargetType="Label">
+        <Setter Property="TextColor" Value="{StaticResource RedColor}" />
+    </Style>
+    <Style x:Key="labelGreen" TargetType="Label">
+        <Setter Property="TextColor" Value="{StaticResource GreenColor}" />
+    </Style>
+    <Style x:Key="centerLabel" TargetType="Label">
+        <Setter Property="HorizontalOptions" Value="Center" />
+        <Setter Property="HorizontalTextAlignment" Value="Center" />
+    </Style>
+    <Style x:Key="pageCaption" TargetType="Label" BasedOn="{StaticResource centerLabel}">
+        <Setter Property="FontSize" Value="20" />
+        <Setter Property="FontAttributes" Value="Bold" />
+    </Style>
+    <Style x:Key="subCaption" TargetType="Label" BasedOn="{StaticResource centerLabel}">
+        <Setter Property="FontSize" Value="18" />
+        <Setter Property="FontAttributes" Value="Bold" />
+    </Style>
+    <Style x:Key="footerText" TargetType="Label" BasedOn="{StaticResource centerLabel}">
+        <Setter Property="FontSize" Value="14" />
+        <Setter Property="Margin" Value="0, 0, 0, 6" />
+    </Style>
+    <Style x:Key="text" TargetType="Label">
+        <Setter Property="FontSize" Value="16" />
+        <Setter Property="HorizontalTextAlignment" Value="Start" />
+    </Style>
+    <Style x:Key="textCaption" TargetType="Label">
+        <Setter Property="FontAttributes" Value="Bold" />
+        <Setter Property="VerticalOptions" Value="Start" />
+        <Setter Property="HorizontalTextAlignment" Value="Start" />
+    </Style>
+    <Style x:Key="itemSelectLabel" TargetType="Label">
+        <Setter Property="Padding" Value="0,8,0,8" />
+        <Setter Property="HorizontalOptions" Value="Fill" />
+        <Setter Property="VerticalOptions" Value="Center" />
+        <Setter Property="HorizontalTextAlignment" Value="Center" />
+    </Style>
+
+    <!-- buttons -->
+    <Style ApplyToDerivedTypes="True" TargetType="Button">
+        <Setter Property="FontFamily" Value="Calibri" />
+        <Setter Property="FontSize" Value="16" />
+        <Setter Property="Margin" Value="1" />
+        <Setter Property="FontAttributes" Value="Bold" />
+        <Setter Property="BorderWidth" Value="0" />
+        <Setter Property="BorderColor" Value="{StaticResource BorderColor}" />
+        <Setter Property="BackgroundColor" Value="{StaticResource ButtonBackgound}" />
+        <Setter Property="CornerRadius" Value="8" />
+        <Setter Property="TextColor" Value="{StaticResource ButtonColor}" />
+    </Style>
+    <Style x:Key="standardButton" TargetType="Button">
+        <Setter Property="HeightRequest" Value="30" />
+        <Setter Property="Padding" Value="5,1,5,1" />
+    </Style>
+    <Style x:Key="menuButton" TargetType="Button" BasedOn="{StaticResource standardButton}">
+        <Setter Property="WidthRequest" Value="200" />
+        <Setter Property="HorizontalOptions" Value="Center" />
+        <Setter Property="Margin" Value="1,1,1,4" />
+    </Style>
+    <Style x:Key="thinButton" TargetType="Button">
+        <Setter Property="HeightRequest" Value="26" />
+        <Setter Property="Padding" Value="1,1,1,1" />
+    </Style>
+    <Style x:Key="thinButtonSelected" TargetType="Button" BasedOn="{StaticResource thinButton}">
+        <Setter Property="BackgroundColor" Value="{StaticResource GreenColor}" />
+    </Style>
+    <Style x:Key="iconButton" TargetType="ImageButton">
+        <Setter Property="BackgroundColor" Value="Transparent" />
+        <Setter Property="HeightRequest" Value="32" />
+        <Setter Property="WidthRequest" Value="32" />
+        <Setter Property="BorderWidth" Value="0" />
+        <Setter Property="HorizontalOptions" Value="Center" />
+        <Setter Property="VerticalOptions" Value="Center" />
+        <Setter Property="Aspect" Value="Fill" />
+    </Style>
+    <Style x:Key="popupButton" TargetType="Button" BasedOn="{StaticResource standardButton}">
+        <Setter Property="Margin" Value="3" />
+        <Setter Property="WidthRequest" Value="80" />
+    </Style>
+    <Style x:Key="listSelectButton" TargetType="Button" BasedOn="{StaticResource standardButton}">
+        <Setter Property="Margin" Value="5" />
+        <Setter Property="WidthRequest" Value="32" />
+    </Style>
+
+    <!-- input -->
+    <Style ApplyToDerivedTypes="True" TargetType="Editor">
+        <Setter Property="FontSize" Value="16" />
+        <Setter Property="FontFamily" Value="Calibri" />
+        <Setter Property="TextColor" Value="{StaticResource InputColor}" />
+        <Setter Property="BackgroundColor" Value="Transparent" />
+        <Setter Property="PlaceholderColor" Value="Transparent" />
+    </Style>
+    <Style ApplyToDerivedTypes="True" TargetType="Entry">
+        <Setter Property="FontSize" Value="16" />
+        <Setter Property="FontFamily" Value="Calibri" />
+        <Setter Property="TextColor" Value="{StaticResource InputColor}" />
+        <Setter Property="BackgroundColor" Value="Transparent" />
+        <Setter Property="PlaceholderColor" Value="Transparent" />
+    </Style>
+    <Style ApplyToDerivedTypes="True" TargetType="CheckBox">
+        <Setter Property="Color" Value="{StaticResource InputColor}" />
+    </Style>
+
+    <!-- borders -->
+    <Style x:Key="borderCommon" TargetType="Border">
+        <Setter Property="Stroke" Value="{StaticResource BorderColor}" />
+        <Setter Property="StrokeThickness" Value="1" />
+        <Setter Property="StrokeShape" Value="RoundRectangle 6,6,6,6" />
+    </Style>
+    <Style x:Key="borderInput" TargetType="Border" BasedOn="{StaticResource borderCommon}">
+        <Setter Property="Padding" Value="5,1,5,1" />
+        <Setter Property="Margin" Value="1" />
+        <Setter Property="BackgroundColor" Value="{StaticResource InputBackgound}" />
+    </Style>
+    <Style x:Key="borderImage" TargetType="Border" BasedOn="{StaticResource borderCommon}">
+        <Setter Property="Padding" Value="0" />
+        <Setter Property="Margin" Value="1" />
+        <Setter Property="BackgroundColor" Value="Transparent" />
+        <Setter Property="VerticalOptions" Value="Center" />
+        <Setter Property="HorizontalOptions" Value="Center" />
+    </Style>
+    <Style x:Key="borderText" TargetType="Border" BasedOn="{StaticResource borderCommon}">
+        <Setter Property="Margin" Value="10,5,10,5" />
+        <Setter Property="Padding" Value="5,3,5,3" />
+    </Style>
+    <Style x:Key="borderPopup" TargetType="Border" BasedOn="{StaticResource borderCommon}">
+        <Setter Property="Margin" Value="5" />
+        <Setter Property="Stroke" Value="{StaticResource GreenColor}" />
+        <Setter Property="Padding" Value="20" />
+        <Setter Property="Shadow.Brush" Value="{StaticResource BorderColor}" />
+        <Setter Property="Shadow.Offset" Value="10,10" />
+        <Setter Property="Shadow.Radius" Value="20" />
+        <Setter Property="Shadow.Opacity" Value="0.8" />
+        <Setter Property="BackgroundColor" Value="{StaticResource BackgroundColor}" />
+    </Style>
+    <Style x:Key="borderPopupRed" TargetType="Border" BasedOn="{StaticResource borderPopup}">
+        <Setter Property="Stroke" Value="{StaticResource RedColor}" />
+    </Style>
+
+    <Style x:Key="verticalDelimiter" TargetType="BoxView">
+        <Setter Property="HeightRequest" Value="1" />
+        <Setter Property="BackgroundColor" Value="{StaticResource DelimiterColor}" />
+        <Setter Property="Margin" Value="10,2,10,2" />
+    </Style>
+
+    <!-- bars -->
+
+    <Style TargetType="TabBar">
+        <Setter Property="Shell.TabBarBackgroundColor" Value="{StaticResource TabBarBackground}" />
+        <Setter Property="Shell.TabBarTitleColor" Value="{StaticResource TabBarColor}" />
+        <Setter Property="Shell.TabBarUnselectedColor" Value="{StaticResource TabBarColorUnselected}" />
+    </Style>
+
+    <Style ApplyToDerivedTypes="True" TargetType="ProgressBar">
+        <Setter Property="BackgroundColor" Value="{StaticResource ProgressBackgound}" />
+    </Style>
+
+    <Style ApplyToDerivedTypes="True" TargetType="ActivityIndicator">
+        <Setter Property="Color" Value="{StaticResource GreenColor}" />
+        <Setter Property="HorizontalOptions" Value="Center" />
+        <Setter Property="VerticalOptions" Value="Center" />
+        <Setter Property="HeightRequest" Value="30" />
+        <Setter Property="WidthRequest" Value="30" />
+    </Style>
+
+    <!-- image -->
+
+    <Style x:Key="listRowIcon" TargetType="Image">
+        <Setter Property="Source" Value="listicon.png" />
+        <Setter Property="HeightRequest" Value="20" />
+        <Setter Property="WidthRequest" Value="20" />
+        <Setter Property="Aspect" Value="Fill" />
+        <Setter Property="VerticalOptions" Value="Center" />
+        <Setter Property="HorizontalOptions" Value="Center" />
+    </Style>
+
+    <Style x:Key="listRowImage" TargetType="Image">
+        <Setter Property="HeightRequest" Value="70" />
+        <Setter Property="WidthRequest" Value="70" />
+        <Setter Property="Aspect" Value="AspectFill" />
+        <Setter Property="VerticalOptions" Value="Center" />
+        <Setter Property="HorizontalOptions" Value="Center" />
+    </Style>
+
+</ResourceDictionary>

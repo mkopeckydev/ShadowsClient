@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Shell
+    x:Class="Shadows.Client.AppShell"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:pages="clr-namespace:Shadows.Client.Pages"
+    Shell.FlyoutBehavior="Disabled"
+    Shell.NavBarIsVisible="False">
+
+    <ShellContent ContentTemplate="{DataTemplate pages:CharacterList}" Route="CharacterList" />
+    
+    <TabBar Route="MainPage">
+        <ShellContent Title="Postava" Icon="character.svg" ContentTemplate="{DataTemplate pages:CharacterMainPage}" Route="CharacterMainPage" />
+        <ShellContent Title="Knihovna" Icon="book.svg" ContentTemplate="{DataTemplate pages:ItemSearch}" Route="ItemSearch" />
+        <ShellContent Title="Kouzla" Icon="star.svg" ContentTemplate="{DataTemplate pages:SpellbookItemSearch}" Route="SpellbookItemSearch" />
+        <ShellContent Title="Činnosti" Icon="check.svg" ContentTemplate="{DataTemplate pages:ActivityView}" Route="ActivityView" />
+        <ShellContent Title="Nastavení" Icon="settings.svg" ContentTemplate="{DataTemplate pages:CharacterAdminPage}" Route="CharacterAdminPage" />
+    </TabBar>
+</Shell>

@@ -1,0 +1,60 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<controls:BaseContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Shadows.Client.Pages.CustomCounterDetail"
+             xmlns:controls="clr-namespace:Shadows.Client.Controls"
+             xmlns:apiModel="clr-namespace:Shadows.Api.WebApi;assembly=Shadows.Api"
+             x:DataType="apiModel:CustomCounter">
+    <Grid Style="{StaticResource mainGrid}">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <controls:PageHeader Grid.Row="0" Grid.Column="0" Caption="Editace počítadla" x:Name="pageHeader" BackButton="True" DoneButton="True" DeleteButton="True" 
+                             DoneClicked="pageHeader_DoneClicked" DeleteClicked="pageHeader_DeleteClicked" />
+
+        <Grid Grid.Row="1" Grid.Column="0" Style="{StaticResource innerGrid}">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="3*" />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+
+            <Label Grid.Row="0" Grid.Column="0" Text="Název" />
+            <Border Grid.Row="0" Grid.Column="1" Style="{StaticResource borderInput}">
+                <Entry Text="{Binding Caption}" MaxLength="64"/>
+            </Border>
+
+            <Label Grid.Row="1" Grid.Column="0" Text="Hodnota" />
+            <Border Grid.Row="1" Grid.Column="1" Style="{StaticResource borderInput}">
+                <Entry Text="{Binding ActualValue}" MaxLength="6" Keyboard="Numeric" />
+            </Border>
+
+            <Label Grid.Row="2" Grid.Column="0" Text="Maximum" />
+            <Border Grid.Row="2" Grid.Column="1" Style="{StaticResource borderInput}">
+                <Entry Text="{Binding MaxValue}" MaxLength="6" Keyboard="Numeric" />
+            </Border>
+
+            <Label Grid.Row="3" Grid.Column="0" Text="Pořadí" />
+            <Border Grid.Row="3" Grid.Column="1" Style="{StaticResource borderInput}">
+                <Entry Text="{Binding Ordering}" MaxLength="6" Keyboard="Numeric" />
+            </Border>
+
+            <Label Grid.Row="4" Grid.Column="0" Text="Barva" />
+            <Border Grid.Row="4" Grid.Column="1" Style="{StaticResource borderInput}">
+                <controls:ListSelect x:Name="sColor" SelectedChanged="sColor_SelectedChanged" />
+            </Border>
+        </Grid>
+
+    </Grid>
+</controls:BaseContentPage>

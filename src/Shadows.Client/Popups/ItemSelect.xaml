@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<toolkit:Popup xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+               xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+               xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+               xmlns:system="clr-namespace:System;assembly=mscorlib"
+               xmlns:model="clr-namespace:Shadows.Data.Model;assembly=Shadows.Data"
+               x:TypeArguments="system:Boolean"
+               x:Class="Shadows.Client.Popups.ItemSelect"
+               BackgroundColor="Transparent"
+               Padding="0">
+    <VerticalStackLayout>
+        <Border Style="{StaticResource borderPopup}">
+            <VerticalStackLayout>
+                <Label Text="Výběr" x:Name="lblCaption" Style="{StaticResource pageCaption}" />
+                <CollectionView x:Name="cwItems" Style="{StaticResource innerCollection}" >
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate x:DataType="model:ListObject">
+                            <Label Style="{StaticResource itemSelectLabel}" Text="{Binding Caption}">
+                                <Label.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="Selection_Tapped" CommandParameter="{Binding .}" />
+                                </Label.GestureRecognizers>
+                            </Label>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+                <HorizontalStackLayout HorizontalOptions="Center">
+                    <Button Text="Zavřít" Style="{StaticResource popupButton}" Clicked="btnClose_Clicked" />
+                </HorizontalStackLayout>
+            </VerticalStackLayout>
+        </Border>
+    </VerticalStackLayout>
+</toolkit:Popup>

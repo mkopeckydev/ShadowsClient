@@ -1,0 +1,48 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<controls:BaseContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Shadows.Client.Pages.ActivityView"
+             xmlns:apiModel="clr-namespace:Shadows.Api.WebApi;assembly=Shadows.Api"
+             xmlns:controls="clr-namespace:Shadows.Client.Controls">
+    <Grid Style="{StaticResource mainGrid}">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <controls:PageHeader Grid.Row="0" Grid.Column="0" Caption="Činnosti" RefreshButton="True" x:Name="pageHeader" RefreshClicked="pageHeader_RefreshClicked" />
+
+        <CollectionView Grid.Row="1" Grid.Column="0" x:Name="lwActivities" Style="{StaticResource innerCollection}" >
+            <CollectionView.ItemTemplate>
+                <DataTemplate x:DataType="apiModel:CharacterActivity">
+                    <Grid VerticalOptions="Center" HeightRequest="40">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="6*" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+
+                        <Image Grid.Row="0" Grid.Column="0" Style="{StaticResource listRowIcon}" />
+                        <Label Grid.Row="0" Grid.Column="1" VerticalOptions="Center" Text="{Binding Caption}" TextColor="{Binding ActivityColor}" />
+                        <CheckBox Grid.Row="0" Grid.Column="2" IsChecked="{Binding Checked5}" IsVisible="{Binding Checked5Visible}" CheckedChanged="CheckBox5_CheckedChanged" />
+                        <CheckBox Grid.Row="0" Grid.Column="3" IsChecked="{Binding Checked4}" IsVisible="{Binding Checked4Visible}" CheckedChanged="CheckBox4_CheckedChanged" />
+                        <CheckBox Grid.Row="0" Grid.Column="4" IsChecked="{Binding Checked3}" IsVisible="{Binding Checked3Visible}" CheckedChanged="CheckBox3_CheckedChanged" />
+                        <CheckBox Grid.Row="0" Grid.Column="5" IsChecked="{Binding Checked2}" IsVisible="{Binding Checked2Visible}" CheckedChanged="CheckBox2_CheckedChanged" />
+                        <CheckBox Grid.Row="0" Grid.Column="6" IsChecked="{Binding Checked1}" IsVisible="{Binding Checked1Visible}" CheckedChanged="CheckBox1_CheckedChanged" />
+                    </Grid>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+
+    </Grid>
+</controls:BaseContentPage>

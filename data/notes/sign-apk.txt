@@ -1,0 +1,16 @@
+1) Otevřít ve visual studiu View / Terminal
+2) Spustit: keytool -genkey -v -keystore shadows.keystore -alias Key -keyalg RSA -keysize 2048 -validity 10000
+3) Zadat heslo: shadowspwd a další informace
+4) Do maui projektu pridat nastaveni
+
+	<PropertyGroup Condition="$(TargetFramework.Contains('-android')) and '$(Configuration)' == 'Release'">
+		<AndroidKeyStore>True</AndroidKeyStore>
+		<AndroidSigningKeyStore>..\shadows.keystore</AndroidSigningKeyStore>
+		<AndroidSigningKeyAlias>Key</AndroidSigningKeyAlias>
+		<AndroidSigningKeyPass>shadowspwd</AndroidSigningKeyPass>
+		<AndroidSigningStorePass>shadowspwd</AndroidSigningStorePass>
+	</PropertyGroup>
+
+
+Video: https://youtu.be/zguQvyVw7bo
+Web: https://learn.microsoft.com/cs-cz/dotnet/maui/android/deployment/overview

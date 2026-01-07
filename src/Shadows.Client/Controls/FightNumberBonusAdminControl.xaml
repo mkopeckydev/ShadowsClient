@@ -1,0 +1,40 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:apiModel="clr-namespace:Shadows.Api.WebApi;assembly=Shadows.Api"
+             x:Class="Shadows.Client.Controls.FightNumberBonusAdminControl"
+             x:DataType="apiModel:FightNumberBonus">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="3*" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <Border Grid.Row="0" Grid.Column="0" Style="{StaticResource borderInput}">
+            <Entry Text="{Binding Caption}" />
+        </Border>
+        <Border Grid.Row="0" Grid.Column="1" Style="{StaticResource borderInput}">
+            <Entry Text="{Binding Bonus1}" Keyboard="Numeric" HorizontalTextAlignment="Center" />
+        </Border>
+        <Border Grid.Row="0" Grid.Column="2" Style="{StaticResource borderInput}">
+            <Entry Text="{Binding Bonus2}" Keyboard="Numeric" HorizontalTextAlignment="Center" />
+        </Border>
+        <Border Grid.Row="0" Grid.Column="3" Style="{StaticResource borderInput}">
+            <Entry Text="{Binding Bonus3}" Keyboard="Numeric" HorizontalTextAlignment="Center" />
+        </Border>
+        <Border Grid.Row="0" Grid.Column="4" Style="{StaticResource borderInput}">
+            <Entry Text="{Binding Bonus4}" Keyboard="Numeric" HorizontalTextAlignment="Center" />
+        </Border>
+        <Border Grid.Row="0" Grid.Column="5" Style="{StaticResource borderInput}">
+            <Entry Text="{Binding Bonus5}" Keyboard="Numeric" HorizontalTextAlignment="Center" />
+        </Border>
+
+    </Grid>
+</ContentView>

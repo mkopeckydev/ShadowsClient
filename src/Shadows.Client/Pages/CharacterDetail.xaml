@@ -1,0 +1,51 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<controls:BaseContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+               xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+               x:Class="Shadows.Client.Pages.CharacterDetail"
+               xmlns:model="clr-namespace:Shadows.Data.Model;assembly=Shadows.Data"
+               xmlns:controls="clr-namespace:Shadows.Client.Controls"
+               x:DataType="model:CharacterData">
+    <VerticalStackLayout>
+        <Grid Style="{StaticResource mainGrid}" x:Name="grdDetail">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+
+            <controls:PageHeader Grid.Row="0" Grid.Column="0" x:Name="pageHeader" BackButton="True" DoneButton="True"
+                                 DoneClicked="pageHeader_DoneClicked" DeleteClicked="pageHeader_DeleteClicked"/>
+            
+            <Grid Grid.Row="1" Grid.Column="0" Style="{StaticResource innerGrid}">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="3*" />
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+
+                <Label Grid.Row="0" Grid.Column="0" Text="Jméno" />
+                <Border Grid.Row="0" Grid.Column="1" Style="{StaticResource borderInput}">
+                    <Entry Text="{Binding DisplayName}" MaxLength="32" />
+                </Border>
+
+                <Label Grid.Row="1" Grid.Column="0" Text="Login" />
+                <Border Grid.Row="1" Grid.Column="1" Style="{StaticResource borderInput}">
+                    <Entry Text="{Binding UserName}" MaxLength="32" />
+                </Border>
+
+                <Label Grid.Row="2" Grid.Column="0" Text="Heslo" />
+                <Border Grid.Row="2" Grid.Column="1" Style="{StaticResource borderInput}">
+                    <Entry Text="{Binding Password}" MaxLength="32" />
+                </Border>
+
+            </Grid>
+
+        </Grid>
+    </VerticalStackLayout>
+</controls:BaseContentPage>

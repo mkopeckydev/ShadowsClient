@@ -1,0 +1,9 @@
+Accept Android SDK licenses manually, run cmd as administrator
+C:\Program Files (x86)\Android\android-sdk\cmdline-tools\latest\bin\sdkmanager --licenses
+
+Set system variable ANDROID_HOME
+C:\Program Files (x86)\Android\android-sdk
+
+Run manually, placed in MAUI log, VS Menu/Help/.NET MAUI/Open logs
+Run cmd as admin!
+"C:\Program Files (x86)\Android\android-sdk\cmdline-tools/latest\bin\avdmanager.bat" -v create avd -n pixel_7_-_api_36 -k system-images;android-36;google_apis_playstore;x86_64 --tag google_apis_playstore --abi x86_64 -d pixel_7 --sdcard 512M

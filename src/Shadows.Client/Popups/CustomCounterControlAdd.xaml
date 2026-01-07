@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<toolkit:Popup xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+               xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+               xmlns:system="clr-namespace:System;assembly=mscorlib"
+               xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+               x:TypeArguments="system:Boolean"
+               x:Class="Shadows.Client.Popups.CustomCounterControlAdd"
+               BackgroundColor="Transparent"
+               Padding="0">
+    <VerticalStackLayout>
+        <Border x:Name="bPopup" Style="{StaticResource borderPopup}">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+
+                <Label Grid.Row="0" Text="Popis" x:Name="lblCaption" Style="{StaticResource subCaption}"></Label>
+
+                <Border Grid.Row="1" Style="{StaticResource borderInput}" Margin="8" WidthRequest="100">
+                    <Entry x:Name="txtValue" HorizontalTextAlignment="Center" Keyboard="Numeric" Completed="btnOk_Clicked" MaxLength="4" />
+                </Border>
+                
+                <HorizontalStackLayout Grid.Row="2" HorizontalOptions="Center">
+                    <Button Text="Potvrdit" Style="{StaticResource popupButton}" Clicked="btnOk_Clicked" />
+                    <Button Text="Zavřít" Style="{StaticResource popupButton}" Clicked="btnClose_Clicked" />
+                </HorizontalStackLayout>
+            </Grid>
+        </Border>
+    </VerticalStackLayout>
+</toolkit:Popup>

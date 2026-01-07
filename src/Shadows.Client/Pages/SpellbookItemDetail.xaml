@@ -1,0 +1,70 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<controls:BaseContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Shadows.Client.Pages.SpellbookItemDetail"
+             xmlns:controls="clr-namespace:Shadows.Client.Controls"
+             xmlns:apiModel="clr-namespace:Shadows.Api.WebApi;assembly=Shadows.Api"
+             x:DataType="apiModel:SpellbookItem">
+
+    <Grid Style="{StaticResource mainGrid}">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <controls:PageHeader Grid.Row="0" Grid.Column="0" x:Name="pageHeader" BackButton="True" DoneButton="True" DoneClicked="pageHeader_DoneClicked" />
+
+        <ScrollView Grid.Row="1" Grid.Column="0">
+            <VerticalStackLayout>
+
+                <Label Text="{Binding SpellGroup}" Style="{StaticResource subCaption}" />
+
+                <Border Style="{StaticResource borderText}">
+                    <VerticalStackLayout>
+                        <Label Text="Parametry kouzla" Style="{StaticResource subCaption}" />
+                        <Label Text="{Binding AttributesCleared}" Style="{StaticResource text}" />
+                    </VerticalStackLayout>
+                </Border>
+
+                <Border Style="{StaticResource borderText}">
+                    <VerticalStackLayout>
+                        <Label Text="Účinky kouzla" Style="{StaticResource subCaption}" />
+                        <Label Text="{Binding DescriptionCleared}" Style="{StaticResource text}" />
+                    </VerticalStackLayout>
+                </Border>
+
+                <Border Style="{StaticResource borderText}">
+                    <VerticalStackLayout>
+                        <Label Text="Modifikace kouzla" Style="{StaticResource subCaption}" />
+                        <Label Text="{Binding ModificationCleared}" Style="{StaticResource text}" />
+                    </VerticalStackLayout>
+                </Border>
+
+                <Border Style="{StaticResource borderText}">
+                    <VerticalStackLayout>
+                        <Label Text="Runový mág (modifikace za runu síly)" Style="{StaticResource subCaption}" />
+                        <Label Text="{Binding ModificationRuneMageCleared}" Style="{StaticResource text}" />
+                    </VerticalStackLayout>
+                </Border>
+
+                <Border Style="{StaticResource borderText}">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+                        <Label Grid.Row="0" Grid.Column="0" Text="Poznámka" Style="{StaticResource subCaption}" />
+                        <Editor Grid.Row="1" Grid.Column="0" x:Name="eNote" HeightRequest="100" />
+                    </Grid>
+                </Border>
+
+            </VerticalStackLayout>
+        </ScrollView>
+    </Grid>
+</controls:BaseContentPage>

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<toolkit:Popup xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+               xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+               xmlns:system="clr-namespace:System;assembly=mscorlib"
+               xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+               x:TypeArguments="system:Boolean"
+               x:Class="Shadows.Client.Popups.MessageBoxConfirm"
+               BackgroundColor="Transparent"
+               Padding="0">
+    <VerticalStackLayout>
+        <Border Style="{StaticResource borderPopup}">
+            <VerticalStackLayout>
+                <Label Text="Popis" x:Name="lblCaption" Style="{StaticResource pageCaption}"></Label>
+                <Label Text="Text" x:Name="lblText" Style="{StaticResource centerLabel}"></Label>
+                <HorizontalStackLayout HorizontalOptions="Center">
+                    <Button Text="Ano" Style="{StaticResource popupButton}" Clicked="btnYes_Clicked" />
+                    <Button Text="Ne" Style="{StaticResource popupButton}" Clicked="btnNo_Clicked" />
+                </HorizontalStackLayout>
+            </VerticalStackLayout>
+        </Border>
+    </VerticalStackLayout>
+</toolkit:Popup>

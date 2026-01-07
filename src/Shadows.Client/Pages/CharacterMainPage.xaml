@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<controls:BaseContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Shadows.Client.Pages.CharacterMainPage"
+             xmlns:controls="clr-namespace:Shadows.Client.Controls">
+
+    <Grid Style="{StaticResource mainGrid}">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <controls:PageHeader Grid.Row="0" Grid.Column="0" x:Name="pageHeader" />
+
+        <ScrollView Grid.Row="1" Grid.Column="0">
+            <VerticalStackLayout>
+                <StackLayout x:Name="slCounters" Style="{StaticResource innerStack}"></StackLayout>
+                <StackLayout x:Name="slFightNumbers" Style="{StaticResource innerStack}"></StackLayout>
+            </VerticalStackLayout>
+        </ScrollView>
+    </Grid>
+
+</controls:BaseContentPage>

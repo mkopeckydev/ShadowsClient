@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Shadows.Client.Controls.PageHeader">
+    <Grid Padding="0,0,0,10">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="40" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="2*" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+
+        <HorizontalStackLayout Grid.Row="0" Grid.Column="0" VerticalOptions="Center" HorizontalOptions="Start">
+            <ImageButton IsVisible="False" x:Name="btnBack" Source="back.png" Style="{StaticResource iconButton}" Clicked="btnBack_Clicked" />
+            <ActivityIndicator x:Name="aIndicator" />
+            <Label x:Name="lblPercent" IsVisible="False" />
+        </HorizontalStackLayout>
+        <Label Grid.Row="0" Grid.Column="1" x:Name="lblCaption" Style="{StaticResource pageCaption}" VerticalOptions="Center" HorizontalOptions="Center"/>
+        <HorizontalStackLayout Grid.Row="0" Grid.Column="2" VerticalOptions="Center" HorizontalOptions="End">
+            <ImageButton IsVisible="False" x:Name="btnDone" Source="done.png" Style="{StaticResource iconButton}" Clicked="btnDone_Clicked"></ImageButton>
+            <ImageButton IsVisible="False" x:Name="btnDelete" Source="delete.png" Style="{StaticResource iconButton}" Clicked="btnDelete_Clicked"></ImageButton>
+            <ImageButton IsVisible="False" x:Name="btnRefresh" Source="refresh.png" Style="{StaticResource iconButton}" Clicked="btnRefresh_Clicked"></ImageButton>
+            <ImageButton IsVisible="False" x:Name="btnPlus" Source="plus.png" Style="{StaticResource iconButton}" Clicked="btnPlus_Clicked"></ImageButton>
+            <ImageButton IsVisible="False" x:Name="btnSearch" Source="search.png" Style="{StaticResource iconButton}" Clicked="btnSearch_Clicked"></ImageButton>
+            <ImageButton IsVisible="False" x:Name="btnDownload" Source="download.png" Style="{StaticResource iconButton}" Clicked="btnDownload_Clicked"></ImageButton>
+        </HorizontalStackLayout>
+    </Grid>
+</ContentView>
