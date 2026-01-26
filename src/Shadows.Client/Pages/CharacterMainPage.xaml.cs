@@ -11,13 +11,13 @@ public partial class CharacterMainPage : BaseContentPage
     {
         InitializeComponent();
         InitActivityIndicator(pageHeader);
+
+        CharacterData d = App.CharacterData;
+        pageHeader.Caption = d.DisplayName;
     }
 
     public override async Task ReloadDataAsync()
     {
-        CharacterData d = App.CharacterData;
-        pageHeader.Caption = d.DisplayName;
-
         ShowActivityIndicator();
 
         var customCounters = await ServerApi.GetCustomCounterListAsync(App.CharacterData);

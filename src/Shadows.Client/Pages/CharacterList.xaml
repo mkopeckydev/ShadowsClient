@@ -12,23 +12,21 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
-            <RowDefinition Height="*" />
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
+            <RowDefinition Height="2*" />
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
 
         <Image Grid.Row="0" Grid.Column="0" Source="logo.png" x:Name="imgBanner" HeightRequest="280" />
 
-        <Label Grid.Row="1" Text="Postavy" Style="{StaticResource pageCaption}" />
+        <Label Grid.Row="1" Text="Postavy" Style="{StaticResource pageCaption}" VerticalOptions="Center" />
 
         <StackLayout Grid.Row="2" x:Name="stCharacters" VerticalOptions="Fill"></StackLayout>
 
-        <ActivityIndicator Grid.Row="3" x:Name="aiLoginPage" />
-
-        <Label Grid.Row="4" x:Name="lblVersion" Text="Verze" Style="{StaticResource footerText}" />
-
-        <adMob:MTAdView Grid.Row="5" x:Name="adBanner" AdsFailedToLoad="adBanner_AdsFailedToLoad" Margin="5" HeightRequest="60"></adMob:MTAdView>
+        <StackLayout Grid.Row="3" Orientation="Vertical" VerticalOptions="End">
+            <ActivityIndicator x:Name="aiLoginPage" />
+            <adMob:MTAdView x:Name="adBanner" AdsFailedToLoad="adBanner_AdsFailedToLoad" Margin="5" HeightRequest="60"></adMob:MTAdView>
+            <Label x:Name="lblVersion" Text="Verze" Style="{StaticResource footerText}" />
+        </StackLayout>
 
     </Grid>
 

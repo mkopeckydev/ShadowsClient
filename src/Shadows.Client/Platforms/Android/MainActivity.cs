@@ -5,6 +5,8 @@ using Shadows.Client.Controls;
 using Shadows.Data.Facade;
 using Plugin.MauiMtAdmob;
 using Plugin.MauiMtAdmob.Extra;
+using AndroidX.Core.View;
+using Shadows.Client.Listeners;
 
 namespace Shadows.Client;
 
@@ -24,6 +26,18 @@ public class MainActivity : MauiAppCompatActivity
         InitAdMob();
 
         SetGDPR();
+
+        var window = Window;
+        if (window != null)
+        {
+            WindowCompat.SetDecorFitsSystemWindows(window, false);
+
+            var decorView = window.DecorView;
+
+            ViewCompat.SetOnApplyWindowInsetsListener(decorView, new InsetsListener());
+
+            decorView.RequestApplyInsets();
+        }
     }
 
     #region AdMob
@@ -238,7 +252,8 @@ public class MainActivity : MauiAppCompatActivity
             if (a != null)
             {
                 a();
-            };
+            }
+            ;
         }
 
         private Action? a = null;

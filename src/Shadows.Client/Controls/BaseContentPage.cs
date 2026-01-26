@@ -1,3 +1,4 @@
+using AndroidX.Core.View;
 using CommunityToolkit.Maui;
 using CommunityToolkit.Maui.Core;
 using CommunityToolkit.Maui.Extensions;
@@ -13,7 +14,9 @@ public class BaseContentPage : ContentPage
     public int ParamId { get; set; }
 
     public BaseContentPage()
-    { }
+    {
+        //Padding = new Thickness(0,50,0,0);
+    }
 
     public void InitActivityIndicator(ActivityIndicator indicator)
     {
@@ -54,6 +57,8 @@ public class BaseContentPage : ContentPage
         return true;
     }
 
+    #region Popup
+
     public async Task<bool> ShowMessageBoxConfirm(string caption, string text)
     {
         IPopupResult<bool> c = await this.ShowPopupAsync<bool>(new MessageBoxConfirm(caption, text), new PopupOptions { Shape = null });
@@ -86,4 +91,32 @@ public class BaseContentPage : ContentPage
             return c.Result;
         }
     }
+    #endregion
+    /*
+    protected override void OnHandlerChanged()
+    {
+        base.OnHandlerChanged();
+
+#if ANDROID
+        if (Handler?.PlatformView is Android.Views.View view)
+        {
+            ViewCompat.SetOnApplyWindowInsetsListener(view, (v, insets) =>
+            {
+                var systemBars = insets.GetInsets(
+                    WindowInsetsCompat.Type.SystemBars());
+
+                Padding = new Thickness(
+                    systemBars.Left,
+                    systemBars.Top,
+                    systemBars.Right,
+                    systemBars.Bottom);
+
+                return insets; // POVINNÉ
+            });
+        }
+#endif
+    }
+    */
+    
 }
+

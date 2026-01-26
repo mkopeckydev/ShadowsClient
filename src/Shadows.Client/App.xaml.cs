@@ -21,6 +21,7 @@ public partial class App : Application
         {
             window.Page = new AppShell();
         }
+
         return window;
     }
 
