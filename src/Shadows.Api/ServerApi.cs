@@ -7,7 +7,7 @@ namespace Shadows.Api
     public class ServerApi
     {
         #region Common
-        private static AndroidClientSoapClient GetClient(CharacterData character)
+        private static AndroidClientSoapClient GetClient()
         {
             BasicHttpBinding binding = new BasicHttpBinding();
             binding.MaxReceivedMessageSize = 5000000;
@@ -32,7 +32,7 @@ namespace Shadows.Api
 
         public static async Task<bool> LoginAsync(CharacterData character)
         {
-            var client = GetClient(character);
+            var client = GetClient();
 
             var result = await client.LoginAsync(GetToken(character));
 
@@ -41,7 +41,7 @@ namespace Shadows.Api
 
         public async static Task<string> MessageAsync(CharacterData character)
         {
-            var client = GetClient(character);
+            var client = GetClient();
             MessageResponse message = await client.MessageAsync(GetToken(character));
 
             return message.Body.MessageResult;
@@ -49,7 +49,7 @@ namespace Shadows.Api
 
         public static async Task<List<ListObject>> SkillListAsync(CharacterData character)
         {
-            var client = GetClient(character);
+            var client = GetClient();
 
             var list = await client.SkillListAsync(GetToken(character));
 
@@ -75,21 +75,21 @@ namespace Shadows.Api
         #region Item
         public static async Task<List<Item>> ItemSearchSearchAsync(string searchText, int idSkill, CharacterData character)
         {
-            var client = GetClient(character);
+            var client = GetClient();
             var result = await client.ItemSearchAsync(searchText, idSkill, GetToken(character));
 
             return result.Body.ItemSearchResult;
         }
         public static async Task<ItemData> ItemDetailAsync(int id, CharacterData character)
         {
-            var client = GetClient(character);
+            var client = GetClient();
             var result = await client.ItemDetailAsync(id, GetToken(character));
             return result.Body.ItemDetailResult;
         }
 
         public static async Task SaveItemNoteAsync(int id, string note, CharacterData character)
         {
-            var client = GetClient(character);
+            var client = GetClient();
             await client.SaveItemNoteAsync(id, note, GetToken(character));
         }
         #endregion
@@ -97,7 +97,7 @@ namespace Shadows.Api
         #region SpellbookItem
         public static async Task<List<SpellbookItem>> SpellbookItemSearchSearchAsync(string searchText, CharacterData character)
         {
-            var client = GetClient(character);
+            var client = GetClient();
 
             var result = await client.SpellbookItemSearchAsync(searchText, GetToken(character));
 
@@ -105,7 +105,7 @@ namespace Shadows.Api
         }
         public static async Task<SpellbookItemData> SpellbookItemDetailAsync(int id, CharacterData character)
         {
-            var client = GetClient(character);
+            var client = GetClient();
 
             var data = await client.SpellbookItemDetailAsync(id, GetToken(character));
             return data.Body.SpellbookItemDetailResult;
@@ -113,7 +113,7 @@ namespace Shadows.Api
 
         public static async Task SaveSpellbookItemNoteAsync(int id, string note, CharacterData character)
         {
-            var client = GetClient(character);
+            var client = GetClient();
             await client.SaveSpellbookItemNoteAsync(id, note, GetToken(character));
         }
         #endregion
@@ -121,20 +121,20 @@ namespace Shadows.Api
         #region CustomCounter
         public static async Task<List<CustomCounter>> GetCustomCounterListAsync(CharacterData character)
         {
-            var client = GetClient(character);
+            var client = GetClient();
             var result = await client.GetCustomCounterListAsync(GetToken(character));
 
             return result.Body.GetCustomCounterListResult;
         }
         public static async Task SaveCustomCounterAsync(CustomCounter data, CharacterData character)
         {
-            var client = GetClient(character);
+            var client = GetClient();
             await client.SaveCustomCounterAsync(data, GetToken(character));
         }
 
         public static async Task DeleteCustomCounterAsync(CustomCounter data, CharacterData character)
         {
-            var client = GetClient(character);
+            var client = GetClient();
             await client.DeleteCustomCounterAsync(data.Id, GetToken(character));
         }
 
@@ -143,26 +143,26 @@ namespace Shadows.Api
         #region FightNumber
         public static async Task<List<FightNumber>> GetFightNumberListAsync(CharacterData character)
         {
-            var client = GetClient(character);
+            var client = GetClient();
             var result = await client.GetFightNumberListAsync(GetToken(character));
 
             return result.Body.GetFightNumberListResult;
         }
         public static async Task SaveFightNumberAsync(FightNumber data, CharacterData character)
         {
-            var client = GetClient(character);
+            var client = GetClient();
             await client.SaveFightNumberAsync(data, GetToken(character));
         }
 
         public static async Task DeleteFightNumberAsync(FightNumber data, CharacterData character)
         {
-            var client = GetClient(character);
+            var client = GetClient();
             await client.DeleteFightNumberAsync(data.Id, GetToken(character));
         }
 
         public static async Task SaveFightNumberBonusSelectedAsync(FightNumberBonus data, CharacterData character)
         {
-            var client = GetClient(character);
+            var client = GetClient();
             await client.SaveFightNumberBonusSelectedAsync(data.Id, data.IsSelected, GetToken(character));
         }
 
@@ -172,7 +172,7 @@ namespace Shadows.Api
 
         public static async Task<List<CharacterActivity>> GetCharacterActivityListAsync(CharacterData character)
         {
-            var client = GetClient(character);
+            var client = GetClient();
             var result = await client.GetCharacterActivityListAsync(GetToken(character));
 
             return result.Body.GetCharacterActivityListResult;
@@ -180,13 +180,13 @@ namespace Shadows.Api
 
         public static async Task SaveCharacterActivityAsync(CharacterActivity data, CharacterData character)
         {
-            var client = GetClient(character);
+            var client = GetClient();
             await client.SaveCharacterActivityAsync(data, GetToken(character));
         }
 
         public static async Task DeleteCharacterActivityAsync(CharacterActivity data, CharacterData character)
         {
-            var client = GetClient(character);
+            var client = GetClient();
             await client.DeleteCharacterActivityAsync(data.Id, GetToken(character));
         }
 

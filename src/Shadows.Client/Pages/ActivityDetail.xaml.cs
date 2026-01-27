@@ -8,10 +8,9 @@ using Shadows.Data.Tools;
 
 namespace Shadows.Client.Pages;
 
-[QueryProperty(nameof(Data), "Data")]
 public partial class ActivityDetail : BaseContentPage
 {
-    public CharacterActivity Data { get; set; } = new CharacterActivity() { CheckCount = 1 };
+    private CharacterActivity _data = new CharacterActivity() { CheckCount = 1 };
 
     public ActivityDetail()
     {
@@ -22,23 +21,29 @@ public partial class ActivityDetail : BaseContentPage
         sCount.Init("Počet", CommonTools.GetListInt(5), this);
     }
 
-    public override async Task ReloadDataAsync()
+    protected override async Task SetQueryData(object data)
     {
-        BindingContext = Data;
-        pageHeader.DeleteButton = (Data.Id == 0);
-        sColor.SelectedItem = Data.ColorObject;
-        sCount.SelectedId = Data.CheckCount;
+        if (data is CharacterActivity)
+        {
+            _data = (CharacterActivity)data;
+
+            BindingContext = _data;
+
+            pageHeader.DeleteButton = (_data.Id == 0);
+            sColor.SelectedItem = _data.ColorObject;
+            sCount.SelectedId = _data.CheckCount;
+        }
     }
 
     private async void pageHeader_DoneClicked(object sender, EventArgs e)
     {
-        if (Data.CheckCount == 0)
+        if (_data.CheckCount == 0)
         {
             await ShowMessageBoxWarning("Uložení činnosti", "Počet musí být v rozmezí 1 - 5.");
             return;
         }
 
-        if (String.IsNullOrEmpty(Data.Caption))
+        if (String.IsNullOrEmpty(_data.Caption))
         {
             await ShowMessageBoxWarning("Uložení činnosti", "Název musí být vyplněn.");
             return;
@@ -46,7 +51,7 @@ public partial class ActivityDetail : BaseContentPage
 
         ShowActivityIndicator();
 
-        await ServerApi.SaveCharacterActivityAsync(Data, App.CharacterData);
+        await ServerApi.SaveCharacterActivityAsync(_data, App.CharacterData);
 
         HideActivityIndicator();
 
@@ -61,7 +66,7 @@ public partial class ActivityDetail : BaseContentPage
         {
             ShowActivityIndicator();
 
-            await ServerApi.DeleteCharacterActivityAsync(Data, App.CharacterData);
+            await ServerApi.DeleteCharacterActivityAsync(_data, App.CharacterData);
 
             HideActivityIndicator();
 
@@ -73,7 +78,7 @@ public partial class ActivityDetail : BaseContentPage
     {
         if (sCount.SelectedItem != null)
         {
-            Data.CheckCount = sCount.SelectedItem.Id;
+            _data.CheckCount = sCount.SelectedItem.Id;
         }
     }
 
@@ -81,7 +86,7 @@ public partial class ActivityDetail : BaseContentPage
     {
         if (sColor.SelectedItem != null)
         {
-            Data.ColorObject = sColor.SelectedItem;
+            _data.ColorObject = sColor.SelectedItem;
         }
     }
 }

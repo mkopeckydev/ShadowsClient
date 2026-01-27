@@ -15,17 +15,14 @@ public partial class CharacterList : BaseContentPage
         InitActivityIndicator(aiLoginPage);
 
         adBanner.AdsId = AdMobData.BANNER_ID;
+
+        lblVersion.Text = String.Format("Verze {0}", AppInfo.Current.VersionString);
     }
 
     public override async Task ReloadDataAsync()
     {
-        lblVersion.Text = String.Format("Verze {0}", AppInfo.Current.VersionString);
-
-        List<CharacterData> characters = new List<CharacterData>();
-
-        App.ClearCharacter();
         CharacterDataFacade fLoginData = new CharacterDataFacade();
-        characters = fLoginData.GetList();
+        var characters = fLoginData.GetList();
 
         stCharacters.Children.Clear();
         foreach (CharacterData ch in characters)
@@ -80,6 +77,8 @@ public partial class CharacterList : BaseContentPage
 
         if (loginOk)
         {
+            App.CheckMessage();
+
             await AppShell.ShellRouteAsync(AppShell.RouteCharacterMainPage);
         }
         else

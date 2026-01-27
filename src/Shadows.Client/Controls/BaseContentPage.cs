@@ -7,16 +7,34 @@ using Shadows.Client.Popups;
 
 namespace Shadows.Client.Controls;
 
-public class BaseContentPage : ContentPage
+public class BaseContentPage : ContentPage, IQueryAttributable
 {
-    private ActivityIndicator? _indicator;
-
     public int ParamId { get; set; }
 
     public BaseContentPage()
+    { }
+
+    #region Common
+
+    public virtual async Task ReloadDataAsync()
+    { }
+
+    protected override async void OnAppearing()
     {
-        //Padding = new Thickness(0,50,0,0);
+        base.OnAppearing();
     }
+
+    protected override bool OnBackButtonPressed()
+    {
+        AppShell.ShellRoutelBack();
+        return true;
+    }
+
+    #endregion
+
+    #region ActivityIndicator
+
+    private ActivityIndicator? _indicator;
 
     public void InitActivityIndicator(ActivityIndicator indicator)
     {
@@ -26,19 +44,6 @@ public class BaseContentPage : ContentPage
     public void InitActivityIndicator(PageHeader header)
     {
         _indicator = header.Indicator;
-    }
-
-    public virtual async Task ReloadDataAsync()
-    { }
-
-    public virtual void ClearData()
-    { }
-
-    protected override async void OnAppearing()
-    {
-        base.OnAppearing();
-
-        //dont use for data loading / changing ui elemnts
     }
 
     protected void ShowActivityIndicator()
@@ -51,11 +56,31 @@ public class BaseContentPage : ContentPage
         _indicator?.IsRunning = false;
     }
 
-    protected override bool OnBackButtonPressed()
+    #endregion
+
+    #region IQueryAttributable
+
+    private bool _queryAttributed = false;
+
+    public async void ApplyQueryAttributes(IDictionary<string, object> query)
     {
-        AppShell.ShellRoutelBack();
-        return true;
+        if (_queryAttributed) return;
+
+        if (query.TryGetValue(AppShell.Data, out var item))
+        {
+            if (item != null)
+            {
+                _queryAttributed = true;
+
+                await SetQueryData(item);
+            }
+        }
     }
+
+    protected virtual async Task SetQueryData(object data)
+    { }
+
+    #endregion
 
     #region Popup
 
@@ -92,31 +117,5 @@ public class BaseContentPage : ContentPage
         }
     }
     #endregion
-    /*
-    protected override void OnHandlerChanged()
-    {
-        base.OnHandlerChanged();
-
-#if ANDROID
-        if (Handler?.PlatformView is Android.Views.View view)
-        {
-            ViewCompat.SetOnApplyWindowInsetsListener(view, (v, insets) =>
-            {
-                var systemBars = insets.GetInsets(
-                    WindowInsetsCompat.Type.SystemBars());
-
-                Padding = new Thickness(
-                    systemBars.Left,
-                    systemBars.Top,
-                    systemBars.Right,
-                    systemBars.Bottom);
-
-                return insets; // POVINNÉ
-            });
-        }
-#endif
-    }
-    */
-    
 }
 

@@ -16,16 +16,9 @@ public partial class CustomCounterList : BaseContentPage
     {
         ShowActivityIndicator();
 
-        var list = await ServerApi.GetCustomCounterListAsync(App.CharacterData);
+        cvCounters.ItemsSource = await ServerApi.GetCustomCounterListAsync(App.CharacterData);
 
         HideActivityIndicator();
-
-        cvCounters.ItemsSource = list;
-    }
-
-    public override void ClearData()
-    {
-        cvCounters.ItemsSource = null;
     }
 
     private async void PageHeader_PlusClicked(object sender, EventArgs e)

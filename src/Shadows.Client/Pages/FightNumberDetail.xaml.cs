@@ -4,35 +4,39 @@ using Shadows.Client.Controls;
 
 namespace Shadows.Client.Pages;
 
-[QueryProperty(nameof(Data), "Data")]
 public partial class FightNumberDetail : BaseContentPage
 {
-    public FightNumber Data { get; set; }
+    public FightNumber _data { get; set; } = new();
 
     public FightNumberDetail()
     {
         InitializeComponent();
         InitActivityIndicator(pageHeader);
-
-        Data = new FightNumber();
-        Data.BaseValueCaption1 = "INI";
-        Data.BaseValueCaption2 = "ÚČ";
-        Data.BaseValueCaption3 = "ZZ";
-        Data.BaseValueCaption4 = "OZ";
-        Data.BaseValueCaption5 = "OU";
     }
 
-    public override async Task ReloadDataAsync()
+    protected override async Task SetQueryData(object data)
     {
-        pageHeader.DeleteButton = (Data.Id == 0);
-        BindingContext = Data;
-
-        if (Data.Bonuses != null)
+        if (data is FightNumber)
         {
-            foreach (FightNumberBonus b in Data.Bonuses)
+            _data = (FightNumber)data;
+
+            _data.BaseValueCaption1 = "INI";
+            _data.BaseValueCaption2 = "ÚČ";
+            _data.BaseValueCaption3 = "ZZ";
+            _data.BaseValueCaption4 = "OZ";
+            _data.BaseValueCaption5 = "OU";
+
+            BindingContext = _data;
+
+            pageHeader.DeleteButton = (_data.Id == 0);
+
+            if (_data.Bonuses != null)
             {
-                FightNumberBonusAdminControl c = new FightNumberBonusAdminControl(b);
-                slBonus.Children.Add(c);
+                foreach (FightNumberBonus b in _data.Bonuses)
+                {
+                    FightNumberBonusAdminControl c = new FightNumberBonusAdminControl(b);
+                    slBonus.Children.Add(c);
+                }
             }
         }
     }
@@ -44,9 +48,9 @@ public partial class FightNumberDetail : BaseContentPage
         {
             bonusList.Add(b.Data);
         }
-        Data.Bonuses = bonusList;
+        _data.Bonuses = bonusList;
 
-        if (String.IsNullOrEmpty(Data.Caption))
+        if (String.IsNullOrEmpty(_data.Caption))
         {
             await ShowMessageBoxWarning("Uložení bojového čísla", "Název musí být vyplněn.");
             return;
@@ -54,7 +58,7 @@ public partial class FightNumberDetail : BaseContentPage
 
         ShowActivityIndicator();
 
-        await ServerApi.SaveFightNumberAsync(Data, App.CharacterData);
+        await ServerApi.SaveFightNumberAsync(_data, App.CharacterData);
 
         HideActivityIndicator();
 
@@ -69,7 +73,7 @@ public partial class FightNumberDetail : BaseContentPage
         {
             ShowActivityIndicator();
 
-            await ServerApi.DeleteFightNumberAsync(Data, App.CharacterData);
+            await ServerApi.DeleteFightNumberAsync(_data, App.CharacterData);
 
             HideActivityIndicator();
 

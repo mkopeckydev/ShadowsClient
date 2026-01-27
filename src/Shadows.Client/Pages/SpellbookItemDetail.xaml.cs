@@ -9,11 +9,10 @@ using System.Threading.Tasks;
 
 namespace Shadows.Client.Pages;
 
-[QueryProperty(nameof(DataId), "Data")]
 public partial class SpellbookItemDetail : BaseContentPage
 {
-    public int DataId { get; set; }
-    public SpellbookItemData Data { get; set; } = new();
+    public int _dataId;
+    private SpellbookItemData _data = new();
 
     public SpellbookItemDetail()
     {
@@ -27,24 +26,29 @@ public partial class SpellbookItemDetail : BaseContentPage
 
         ShowActivityIndicator();
 
-        await ServerApi.SaveSpellbookItemNoteAsync(DataId, note, App.CharacterData);
+        await ServerApi.SaveSpellbookItemNoteAsync(_dataId, note, App.CharacterData);
 
         HideActivityIndicator();
 
         await AppShell.ShellRoutelBackAsync();
     }
 
-    public override async Task ReloadDataAsync()
+    protected override async Task SetQueryData(object data)
     {
-        ShowActivityIndicator();
+        if (data is int)
+        {
+            _dataId = (int)data;
 
-        Data = await ServerApi.SpellbookItemDetailAsync(DataId, App.CharacterData);
+            ShowActivityIndicator();
 
-        HideActivityIndicator();
+            _data = await ServerApi.SpellbookItemDetailAsync(_dataId, App.CharacterData);
 
-        BindingContext = Data.Item;
+            HideActivityIndicator();
 
-        pageHeader.Caption = Data.Item.Caption;
-        eNote.Text = String.Format("{0} ", Data.ItemNote);
+            BindingContext = _data.Item;
+
+            pageHeader.Caption = _data.Item.Caption;
+            eNote.Text = String.Format("{0} ", _data.ItemNote);
+        }
     }
 }

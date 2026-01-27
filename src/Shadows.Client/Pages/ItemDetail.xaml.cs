@@ -11,11 +11,10 @@ using System.Threading.Tasks;
 
 namespace Shadows.Client.Pages;
 
-[QueryProperty(nameof(DataId), "Data")]
 public partial class ItemDetail : BaseContentPage
 {
-    public int DataId { get; set; }
-    ItemData Data = new ItemData();
+    public int _dataId;
+    private ItemData _data = new ItemData();
 
     public ItemDetail()
     {
@@ -29,36 +28,41 @@ public partial class ItemDetail : BaseContentPage
 
         ShowActivityIndicator();
 
-        await ServerApi.SaveItemNoteAsync(DataId, note, App.CharacterData);
+        await ServerApi.SaveItemNoteAsync(_dataId, note, App.CharacterData);
 
         HideActivityIndicator();
 
         await AppShell.ShellRoutelBackAsync();
     }
 
-    public override async Task ReloadDataAsync()
+    protected override async Task SetQueryData(object data)
     {
-        ShowActivityIndicator();
-
-        Data = await ServerApi.ItemDetailAsync(DataId, App.CharacterData);
-
-        HideActivityIndicator();
-
-        BindingContext = Data;
-
-        pageHeader.Caption = Data.Item.Caption;
-
-        if (Data.ImageData.Length > 0)
+        if (data is int)
         {
-            imgMainImage.Source = ImageSource.FromStream(() => new MemoryStream(Data.ImageData));
-        }
-        else
-        {
-            bMainImage.IsVisible = false;
-        }
-        
-        eNote.Text = String.Format("{0} ", Data.ItemNote);
+            _dataId = (int)data;
 
-        cvDetail.ItemsSource = Data.List;
+            ShowActivityIndicator();
+
+            _data = await ServerApi.ItemDetailAsync(_dataId, App.CharacterData);
+
+            HideActivityIndicator();
+
+            BindingContext = _data;
+
+            pageHeader.Caption = _data.Item.Caption;
+
+            if (_data.ImageData.Length > 0)
+            {
+                imgMainImage.Source = ImageSource.FromStream(() => new MemoryStream(_data.ImageData));
+            }
+            else
+            {
+                bMainImage.IsVisible = false;
+            }
+
+            eNote.Text = String.Format("{0} ", _data.ItemNote);
+
+            cvDetail.ItemsSource = _data.List;
+        }
     }
 }

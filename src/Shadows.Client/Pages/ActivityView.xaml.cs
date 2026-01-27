@@ -22,15 +22,13 @@ public partial class ActivityView : BaseContentPage
     {
         ShowActivityIndicator();
 
-        var list = await ServerApi.GetCharacterActivityListAsync(App.CharacterData);
-
-        HideActivityIndicator();
-
         _loading = true;
 
-        lwActivities.ItemsSource = list;
+        lwActivities.ItemsSource = await ServerApi.GetCharacterActivityListAsync(App.CharacterData);
 
         _loading = false;
+
+        HideActivityIndicator();
     }
 
     private void CheckBox5_CheckedChanged(object sender, CheckedChangedEventArgs e)

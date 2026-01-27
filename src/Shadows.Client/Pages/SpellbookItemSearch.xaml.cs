@@ -18,11 +18,9 @@ public partial class SpellbookItemSearch : BaseContentPage
 
         ShowActivityIndicator();
 
-        var list = await ServerApi.SpellbookItemSearchSearchAsync(searchText, App.CharacterData);
+        cvSearch.ItemsSource = await ServerApi.SpellbookItemSearchSearchAsync(searchText, App.CharacterData);
 
         HideActivityIndicator();
-
-        cvSearch.ItemsSource = list;
     }
 
     private async void PageHeader_SearchClicked(object sender, EventArgs e)

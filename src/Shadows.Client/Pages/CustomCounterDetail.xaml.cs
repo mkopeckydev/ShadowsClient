@@ -5,10 +5,9 @@ using Shadows.Data.Facade;
 
 namespace Shadows.Client.Pages;
 
-[QueryProperty(nameof(Data), "Data")]
 public partial class CustomCounterDetail : BaseContentPage
 {
-    public CustomCounter Data { get; set; } = new();
+    private CustomCounter _data { get; set; } = new();
 
     public CustomCounterDetail()
     {
@@ -18,22 +17,27 @@ public partial class CustomCounterDetail : BaseContentPage
         sColor.Init("Barva", ColorFacade.GetColors(), this);
     }
 
-    public override async Task ReloadDataAsync()
+    protected override async Task SetQueryData(object data)
     {
-        BindingContext = Data;
-        pageHeader.DeleteButton = (Data.Id == 0);
-        sColor.SelectedItem = Data.ColorObject;
+        if (data is CustomCounter)
+        {
+            _data = (CustomCounter)data;
+
+            BindingContext = _data;
+            pageHeader.DeleteButton = (_data.Id == 0);
+            sColor.SelectedItem = _data.ColorObject;
+        }
     }
 
     private async void pageHeader_DoneClicked(object sender, EventArgs e)
     {
-        if (Data.MaxValue == 0)
+        if (_data.MaxValue == 0)
         {
             await ShowMessageBoxWarning("Uložení počítadla", "Maximální hodnota nesmí být nulová.");
             return;
         }
 
-        if (String.IsNullOrEmpty(Data.Caption))
+        if (String.IsNullOrEmpty(_data.Caption))
         {
             await ShowMessageBoxWarning("Uložení počítadla", "Název musí být vyplněn.");
             return;
@@ -41,7 +45,7 @@ public partial class CustomCounterDetail : BaseContentPage
 
         ShowActivityIndicator();
 
-        await ServerApi.SaveCustomCounterAsync(Data, App.CharacterData);
+        await ServerApi.SaveCustomCounterAsync(_data, App.CharacterData);
 
         HideActivityIndicator();
 
@@ -56,7 +60,7 @@ public partial class CustomCounterDetail : BaseContentPage
         {
             ShowActivityIndicator();
 
-            await ServerApi.DeleteCustomCounterAsync(Data, App.CharacterData);
+            await ServerApi.DeleteCustomCounterAsync(_data, App.CharacterData);
 
             HideActivityIndicator();
 
@@ -68,7 +72,7 @@ public partial class CustomCounterDetail : BaseContentPage
     {
         if (sColor.SelectedItem != null)
         {
-            Data.ColorObject = sColor.SelectedItem;
+            _data.ColorObject = sColor.SelectedItem;
         }
     }
 }

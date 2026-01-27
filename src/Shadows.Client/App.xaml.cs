@@ -1,4 +1,5 @@
-﻿using Shadows.Client.Services;
+﻿using Android.Service.Voice;
+using Shadows.Client.Services;
 using Shadows.Data.Model;
 
 namespace Shadows.Client;
@@ -30,14 +31,17 @@ public partial class App : Application
     public static void SetCharacter(CharacterData chData)
     {
         actualCharacter = chData;
-        messageService.Show(chData);
     }
 
     public static void SetCharacter(CharacterData chData, SessionData sData)
     {
         actualCharacter = chData;
         sessionData = sData;
-        messageService.Show(chData);
+    }
+
+    public static void CheckMessage()
+    {
+        messageService.Show(actualCharacter);
     }
 
     public static void ClearCharacter()

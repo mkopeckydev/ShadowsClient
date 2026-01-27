@@ -23,6 +23,8 @@ public partial class AppShell : Shell
     public const string RouteFightNumberList = "//MainPage/CharacterAdminPage/FightNumberList";
     public const string RouteFightNumberDetail = "//MainPage/CharacterAdminPage/FightNumberList/FightNumberDetail";
 
+    public const string Data = "Data";
+
     public AppShell()
     {
         InitializeComponent();
@@ -55,7 +57,7 @@ public partial class AppShell : Shell
 
     public static async Task ShellRouteAsync(String route, object data)
     {
-        var navigationParameter = new Dictionary<string, object>{ { "Data", data } };
+        var navigationParameter = new Dictionary<string, object>{ { Data, data } };
         await Shell.Current.GoToAsync(route, navigationParameter);
     }
 
@@ -66,8 +68,6 @@ public partial class AppShell : Shell
         if (Shell.Current.CurrentPage is BaseContentPage)
         {
             BaseContentPage page = (BaseContentPage)Shell.Current.CurrentPage;
-
-            page.ClearData();
 
             await page.ReloadDataAsync();
         }

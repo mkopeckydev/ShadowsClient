@@ -1,4 +1,5 @@
 ﻿using CommunityToolkit.Maui.Extensions;
+using Shadows.Api;
 using Shadows.Client.Controls;
 using Shadows.Client.Popups;
 using Shadows.Data.Facade;
@@ -9,16 +10,13 @@ namespace Shadows.Client.Pages;
 
 public partial class CharacterDetail : BaseContentPage
 {
-    private CharacterData _data = new();
+    private CharacterData _data;
 
     public CharacterDetail()
     {
         InitializeComponent();
         InitActivityIndicator(pageHeader);
-    }
 
-    public override async Task ReloadDataAsync()
-    {
         string caption = String.Empty;
 
         if (App.ExistCharacter())
@@ -47,11 +45,15 @@ public partial class CharacterDetail : BaseContentPage
             return;
         }
 
+        var loginOk = await ServerApi.LoginAsync(_data);
+
+        if (!loginOk)
+        {
+            await ShowMessageBoxWarning("Uložení postavy", "Zadané údaje nejsou správné, přihlášení se nezdařilo.");
+            return;
+        }
+
         fCharacterData.Save(_data);
-
-        App.SetCharacter(_data);
-
-        App.ClearCharacter();
 
         await AppShell.ShellRoutelBackAsync();
     }
