@@ -32,6 +32,6 @@ public partial class ActivityList : BaseContentPage
 
     private async void PageHeader_PlusClicked(object sender, EventArgs e)
     {
-        await AppShell.ShellRouteAsync(AppShell.RouteActivityDetail);
+        await AppShell.ShellRouteAsync(AppShell.RouteActivityDetail, new CharacterActivity());
     }
 }

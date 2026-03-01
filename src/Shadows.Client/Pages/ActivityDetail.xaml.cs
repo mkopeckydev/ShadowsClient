@@ -29,7 +29,7 @@ public partial class ActivityDetail : BaseContentPage
 
             BindingContext = _data;
 
-            pageHeader.DeleteButton = (_data.Id == 0);
+            pageHeader.DeleteButton = (_data.Id != 0);
             sColor.SelectedItem = _data.ColorObject;
             sCount.SelectedId = _data.CheckCount;
         }

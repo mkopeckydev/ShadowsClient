@@ -23,7 +23,7 @@ public partial class FightNumberList : BaseContentPage
 
     private async void PageHeader_PlusClicked(object sender, EventArgs e)
     {
-        await AppShell.ShellRouteAsync(AppShell.RouteFightNumberDetail);
+        await AppShell.ShellRouteAsync(AppShell.RouteFightNumberDetail, new FightNumber());
     }
 
     private async void FightNumber_Tapped(object sender, TappedEventArgs e)

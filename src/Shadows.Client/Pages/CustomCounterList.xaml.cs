@@ -23,7 +23,7 @@ public partial class CustomCounterList : BaseContentPage
 
     private async void PageHeader_PlusClicked(object sender, EventArgs e)
     {
-        await AppShell.ShellRouteAsync(AppShell.RouteCustomCounterDetail);
+        await AppShell.ShellRouteAsync(AppShell.RouteCustomCounterDetail, new CustomCounter());
     }
 
     private async void Counter_Tapped(object sender, TappedEventArgs e)

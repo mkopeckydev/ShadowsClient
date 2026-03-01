@@ -17,8 +17,8 @@
 		<ApplicationIdGuid>9D89AA95-42B7-4827-A543-DBED868BF1C8</ApplicationIdGuid>
 
 		<!-- Versions -->
-		<ApplicationDisplayVersion>1.4.1</ApplicationDisplayVersion>
-		<ApplicationVersion>28</ApplicationVersion>
+		<ApplicationDisplayVersion>1.4.2</ApplicationDisplayVersion>
+		<ApplicationVersion>29</ApplicationVersion>
 
 		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'android'">26.0</SupportedOSPlatformVersion>
 		<GenerateAppInstallerFile>False</GenerateAppInstallerFile>
@@ -49,12 +49,12 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<PackageReference Include="CommunityToolkit.Maui" Version="13.0.0" />
+		<PackageReference Include="CommunityToolkit.Maui" Version="14.0.1" />
 		<PackageReference Include="Plugin.LocalNotification" Version="13.0.0" />
 		<PackageReference Include="Plugin.MauiMTAdmob" Version="2.2.0" />
 		<PackageReference Include="System.ServiceModel.Http" Version="10.0.652802" />
 		<PackageReference Include="System.ServiceModel.Primitives" Version="10.0.652802" />
-		<PackageReference Include="Microsoft.Maui.Controls" Version="10.0.30" />
+		<PackageReference Include="Microsoft.Maui.Controls" Version="10.0.41" />
 		<PackageReference Update="Microsoft.Maui.Controls.Compatibility" Version="8.0.82" />
 	</ItemGroup>
 

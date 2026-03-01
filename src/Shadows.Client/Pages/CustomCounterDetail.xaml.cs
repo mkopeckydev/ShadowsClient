@@ -24,7 +24,7 @@ public partial class CustomCounterDetail : BaseContentPage
             _data = (CustomCounter)data;
 
             BindingContext = _data;
-            pageHeader.DeleteButton = (_data.Id == 0);
+            pageHeader.DeleteButton = (_data.Id != 0);
             sColor.SelectedItem = _data.ColorObject;
         }
     }

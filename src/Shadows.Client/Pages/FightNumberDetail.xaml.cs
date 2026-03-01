@@ -28,7 +28,7 @@ public partial class FightNumberDetail : BaseContentPage
 
             BindingContext = _data;
 
-            pageHeader.DeleteButton = (_data.Id == 0);
+            pageHeader.DeleteButton = (_data.Id != 0);
 
             if (_data.Bonuses != null)
             {
