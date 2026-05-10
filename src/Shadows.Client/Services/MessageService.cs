@@ -1,4 +1,5 @@
 ﻿using Plugin.LocalNotification;
+using Plugin.LocalNotification.Core.Models;
 using Shadows.Api;
 using Shadows.Data.Facade;
 using Shadows.Data.Model;
