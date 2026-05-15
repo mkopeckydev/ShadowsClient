@@ -1,5 +1,6 @@
 ﻿using Android.Service.Voice;
 using Shadows.Client.Services;
+using Shadows.Data.Facade;
 using Shadows.Data.Model;
 
 namespace Shadows.Client;
@@ -13,6 +14,8 @@ public partial class App : Application
     public App()
     {
         InitializeComponent();
+
+        LogFacade.Clear();
     }
 
     protected override Window CreateWindow(IActivationState? activationState)

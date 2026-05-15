@@ -1,6 +1,7 @@
 ﻿using CommunityToolkit.Maui;
 using Plugin.LocalNotification;
 using Plugin.MauiMtAdmob;
+using Shadows.Data.Facade;
 
 namespace Shadows.Client;
 

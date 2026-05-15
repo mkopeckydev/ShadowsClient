@@ -15,6 +15,18 @@ namespace Shadows.Data.Facade
             return filePath;
         }
 
+        public static void Clear()
+        {
+            FileInfo fileInfo = new FileInfo(GetFilePath());
+            if (fileInfo.Exists)
+            {
+                if (fileInfo.LastWriteTime < DateTime.Now.AddDays(-2))
+                { 
+                    fileInfo.Delete(); 
+                }
+            }
+        }
+
         public static void Add(string method, string message)
         {
             FileInfo fileInfo = new FileInfo(GetFilePath());
@@ -32,7 +44,7 @@ namespace Shadows.Data.Facade
             string message = String.Empty;
 
             FileInfo fileInfo = new FileInfo(GetFilePath());
-            if (fileInfo.Exists) 
+            if (fileInfo.Exists)
             {
                 TextReader reader = new StreamReader(fileInfo.FullName);
                 message = reader.ReadToEnd();
