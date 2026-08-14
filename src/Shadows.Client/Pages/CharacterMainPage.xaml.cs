@@ -18,13 +18,14 @@ public partial class CharacterMainPage : BaseContentPage
 
     public override async Task ReloadDataAsync()
     {
-        ShowActivityIndicator();
+        List<CustomCounter> customCounters = [];
+        List<FightNumber> fightNumbers = [];
 
-        var customCounters = await ServerApi.GetCustomCounterListAsync(App.CharacterData);
-
-        var fightNumbers = await ServerApi.GetFightNumberListAsync(App.CharacterData);
-
-        HideActivityIndicator();
+        await RunBusyAsync(async () =>
+        {
+            customCounters = await ServerApi.GetCustomCounterListAsync(App.CharacterData);
+            fightNumbers = await ServerApi.GetFightNumberListAsync(App.CharacterData);
+        });
 
         slCounters.Children.Clear();
 

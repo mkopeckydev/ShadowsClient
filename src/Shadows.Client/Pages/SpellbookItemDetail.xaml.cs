@@ -24,26 +24,17 @@ public partial class SpellbookItemDetail : BaseContentPage
     {
         string note = eNote.Text.Trim();
 
-        ShowActivityIndicator();
-
-        await ServerApi.SaveSpellbookItemNoteAsync(_dataId, note, App.CharacterData);
-
-        HideActivityIndicator();
+        await RunBusyAsync(() => ServerApi.SaveSpellbookItemNoteAsync(_dataId, note, App.CharacterData));
 
         await AppShell.ShellRoutelBackAsync();
     }
 
     protected override async Task SetQueryData(object data)
     {
-        if (data is int)
+        if (data is int id)
         {
-            _dataId = (int)data;
-
-            ShowActivityIndicator();
-
-            _data = await ServerApi.SpellbookItemDetailAsync(_dataId, App.CharacterData);
-
-            HideActivityIndicator();
+            _dataId = id;
+            _data = await RunBusyAsync(() => ServerApi.SpellbookItemDetailAsync(_dataId, App.CharacterData));
 
             BindingContext = _data.Item;
 

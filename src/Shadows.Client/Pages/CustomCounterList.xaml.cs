@@ -14,11 +14,7 @@ public partial class CustomCounterList : BaseContentPage
 
     public override async Task ReloadDataAsync()
     {
-        ShowActivityIndicator();
-
-        cvCounters.ItemsSource = await ServerApi.GetCustomCounterListAsync(App.CharacterData);
-
-        HideActivityIndicator();
+        cvCounters.ItemsSource = await RunBusyAsync(() => ServerApi.GetCustomCounterListAsync(App.CharacterData));
     }
 
     private async void PageHeader_PlusClicked(object sender, EventArgs e)

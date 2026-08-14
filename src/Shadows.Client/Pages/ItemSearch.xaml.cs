@@ -32,11 +32,7 @@ public partial class ItemSearch : BaseContentPage
             idSkill = sSkill.SelectedItem.Id;
         }
 
-        ShowActivityIndicator();
-
-        var list = await ServerApi.ItemSearchSearchAsync(searchText, idSkill, App.CharacterData);
-
-        HideActivityIndicator();
+        var list = await RunBusyAsync(() => ServerApi.ItemSearchSearchAsync(searchText, idSkill, App.CharacterData));
 
         DirectoryInfo imgDir = AppFiles.GetItemImagesDir();
 
@@ -69,30 +65,32 @@ public partial class ItemSearch : BaseContentPage
 
         DirectoryInfo imgDir = AppFiles.GetItemImagesDir();
 
-        ShowActivityIndicator();
-
-        var list = await ServerApi.ItemSearchSearchAsync(String.Empty, 0, App.CharacterData);
-
-        int index = 0;
-        
-        foreach (Item i in list)
+        try
         {
-            var data = await ServerApi.ItemDetailAsync(i.Id, App.CharacterData);
-
-            if (data.ImageData.Length > 0)
+            await RunBusyAsync(async () =>
             {
-                string fileName = Path.Combine(imgDir.FullName, i.ImageName);
-                await File.WriteAllBytesAsync(fileName, data.ImageData);
-            }
-            index++;
+                var list = await ServerApi.ItemSearchSearchAsync(String.Empty, 0, App.CharacterData);
+                int index = 0;
 
-            pageHeader.ShowPercent(Convert.ToInt32((Convert.ToSingle(index) / Convert.ToSingle(list.Count)) * 100));
-            ShowActivityIndicator();
+                foreach (Item i in list)
+                {
+                    var data = await ServerApi.ItemDetailAsync(i.Id, App.CharacterData);
+
+                    if (data.ImageData.Length > 0)
+                    {
+                        string fileName = Path.Combine(imgDir.FullName, i.ImageName);
+                        await File.WriteAllBytesAsync(fileName, data.ImageData);
+                    }
+
+                    index++;
+                    pageHeader.ShowPercent(Convert.ToInt32((Convert.ToSingle(index) / Convert.ToSingle(list.Count)) * 100));
+                }
+            });
         }
-
-        pageHeader.HidePercent();
-
-        HideActivityIndicator();
+        finally
+        {
+            pageHeader.HidePercent();
+        }
 
         await ReloadDataAsync();
     }

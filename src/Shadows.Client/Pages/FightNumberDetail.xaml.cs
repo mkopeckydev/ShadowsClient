@@ -56,11 +56,7 @@ public partial class FightNumberDetail : BaseContentPage
             return;
         }
 
-        ShowActivityIndicator();
-
-        await ServerApi.SaveFightNumberAsync(_data, App.CharacterData);
-
-        HideActivityIndicator();
+        await RunBusyAsync(() => ServerApi.SaveFightNumberAsync(_data, App.CharacterData));
 
         await AppShell.ShellRoutelBackAsync();
     }
@@ -71,11 +67,7 @@ public partial class FightNumberDetail : BaseContentPage
 
         if (c)
         {
-            ShowActivityIndicator();
-
-            await ServerApi.DeleteFightNumberAsync(_data, App.CharacterData);
-
-            HideActivityIndicator();
+            await RunBusyAsync(() => ServerApi.DeleteFightNumberAsync(_data, App.CharacterData));
 
             await AppShell.ShellRoutelBackAsync();
         }

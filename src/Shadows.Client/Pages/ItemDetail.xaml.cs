@@ -26,26 +26,17 @@ public partial class ItemDetail : BaseContentPage
     {
         string note = eNote.Text.Trim();
 
-        ShowActivityIndicator();
-
-        await ServerApi.SaveItemNoteAsync(_dataId, note, App.CharacterData);
-
-        HideActivityIndicator();
+        await RunBusyAsync(() => ServerApi.SaveItemNoteAsync(_dataId, note, App.CharacterData));
 
         await AppShell.ShellRoutelBackAsync();
     }
 
     protected override async Task SetQueryData(object data)
     {
-        if (data is int)
+        if (data is int id)
         {
-            _dataId = (int)data;
-
-            ShowActivityIndicator();
-
-            _data = await ServerApi.ItemDetailAsync(_dataId, App.CharacterData);
-
-            HideActivityIndicator();
+            _dataId = id;
+            _data = await RunBusyAsync(() => ServerApi.ItemDetailAsync(_dataId, App.CharacterData));
 
             BindingContext = _data;
 

@@ -18,8 +18,8 @@
 		<ApplicationIdGuid>9D89AA95-42B7-4827-A543-DBED868BF1C8</ApplicationIdGuid>
 
 		<!-- Versions -->
-		<ApplicationDisplayVersion>1.4.3</ApplicationDisplayVersion>
-		<ApplicationVersion>30</ApplicationVersion>
+		<ApplicationDisplayVersion>1.4.4</ApplicationDisplayVersion>
+		<ApplicationVersion>31</ApplicationVersion>
 
 		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'android'">26.0</SupportedOSPlatformVersion>
 		<GenerateAppInstallerFile>False</GenerateAppInstallerFile>
@@ -50,13 +50,13 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<PackageReference Include="CommunityToolkit.Maui" Version="14.1.1" />
-		<PackageReference Include="Plugin.LocalNotification" Version="14.1.0" />
+		<PackageReference Include="CommunityToolkit.Maui" Version="15.0.0" />
+		<PackageReference Include="Plugin.LocalNotification" Version="14.1.1" />
 		<PackageReference Include="Plugin.MauiMTAdmob" Version="2.4.0" />
-		<PackageReference Include="System.Security.Cryptography.Xml" Version="10.0.7" />
+		<PackageReference Include="System.Security.Cryptography.Xml" Version="10.0.11" />
 		<PackageReference Include="System.ServiceModel.Http" Version="10.0.652802" />
 		<PackageReference Include="System.ServiceModel.Primitives" Version="10.0.652802" />
-		<PackageReference Include="Microsoft.Maui.Controls" Version="10.0.60" />
+		<PackageReference Include="Microsoft.Maui.Controls" Version="10.0.90" />
 		<PackageReference Update="Microsoft.Maui.Controls.Compatibility" Version="8.0.82" />
 	</ItemGroup>
 

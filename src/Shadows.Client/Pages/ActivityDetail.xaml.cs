@@ -49,11 +49,7 @@ public partial class ActivityDetail : BaseContentPage
             return;
         }
 
-        ShowActivityIndicator();
-
-        await ServerApi.SaveCharacterActivityAsync(_data, App.CharacterData);
-
-        HideActivityIndicator();
+        await RunBusyAsync(() => ServerApi.SaveCharacterActivityAsync(_data, App.CharacterData));
 
         await AppShell.ShellRoutelBackAsync();
     }
@@ -64,11 +60,7 @@ public partial class ActivityDetail : BaseContentPage
 
         if (c)
         {
-            ShowActivityIndicator();
-
-            await ServerApi.DeleteCharacterActivityAsync(_data, App.CharacterData);
-
-            HideActivityIndicator();
+            await RunBusyAsync(() => ServerApi.DeleteCharacterActivityAsync(_data, App.CharacterData));
 
             await AppShell.ShellRoutelBackAsync();
         }

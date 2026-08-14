@@ -14,11 +14,7 @@ public partial class ActivityList : BaseContentPage
 
     public override async Task ReloadDataAsync()
     {
-        ShowActivityIndicator();
-
-        lvActivities.ItemsSource = await ServerApi.GetCharacterActivityListAsync(App.CharacterData);
-
-        HideActivityIndicator();
+        lvActivities.ItemsSource = await RunBusyAsync(() => ServerApi.GetCharacterActivityListAsync(App.CharacterData));
     }
 
     private async void Activity_Tapped(object sender, TappedEventArgs e)

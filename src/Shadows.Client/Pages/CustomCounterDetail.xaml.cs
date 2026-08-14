@@ -43,11 +43,7 @@ public partial class CustomCounterDetail : BaseContentPage
             return;
         }
 
-        ShowActivityIndicator();
-
-        await ServerApi.SaveCustomCounterAsync(_data, App.CharacterData);
-
-        HideActivityIndicator();
+        await RunBusyAsync(() => ServerApi.SaveCustomCounterAsync(_data, App.CharacterData));
 
         await AppShell.ShellRoutelBackAsync();
     }
@@ -58,11 +54,7 @@ public partial class CustomCounterDetail : BaseContentPage
 
         if (c)
         {
-            ShowActivityIndicator();
-
-            await ServerApi.DeleteCustomCounterAsync(_data, App.CharacterData);
-
-            HideActivityIndicator();
+            await RunBusyAsync(() => ServerApi.DeleteCustomCounterAsync(_data, App.CharacterData));
 
             await AppShell.ShellRoutelBackAsync();
         }

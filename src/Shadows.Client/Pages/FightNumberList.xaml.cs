@@ -14,11 +14,7 @@ public partial class FightNumberList : BaseContentPage
 
     public async override Task ReloadDataAsync()
     {
-        ShowActivityIndicator();
-
-        lwFightNumbers.ItemsSource = await ServerApi.GetFightNumberListAsync(App.CharacterData);
-
-        HideActivityIndicator();
+        lwFightNumbers.ItemsSource = await RunBusyAsync(() => ServerApi.GetFightNumberListAsync(App.CharacterData));
     }
 
     private async void PageHeader_PlusClicked(object sender, EventArgs e)

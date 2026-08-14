@@ -4,6 +4,7 @@ using CommunityToolkit.Maui.Core;
 using CommunityToolkit.Maui.Extensions;
 using CommunityToolkit.Maui.Views;
 using Shadows.Client.Popups;
+using System.Threading;
 
 namespace Shadows.Client.Controls;
 
@@ -35,6 +36,7 @@ public class BaseContentPage : ContentPage, IQueryAttributable
     #region ActivityIndicator
 
     private ActivityIndicator? _indicator;
+    private int _busyCount;
 
     public void InitActivityIndicator(ActivityIndicator indicator)
     {
@@ -46,14 +48,49 @@ public class BaseContentPage : ContentPage, IQueryAttributable
         _indicator = header.Indicator;
     }
 
-    protected void ShowActivityIndicator()
+    private void ShowActivityIndicator()
     {
-        _indicator?.IsRunning = true;
+        if (Interlocked.Increment(ref _busyCount) == 1)
+        {
+            _indicator?.IsRunning = true;
+        }
     }
 
-    protected void HideActivityIndicator()
+    private void HideActivityIndicator()
     {
-        _indicator?.IsRunning = false;
+        if (Interlocked.Decrement(ref _busyCount) <= 0)
+        {
+            Interlocked.Exchange(ref _busyCount, 0);
+            _indicator?.IsRunning = false;
+        }
+    }
+
+    protected async Task RunBusyAsync(Func<Task> action)
+    {
+        ShowActivityIndicator();
+
+        try
+        {
+            await action();
+        }
+        finally
+        {
+            HideActivityIndicator();
+        }
+    }
+
+    protected async Task<T> RunBusyAsync<T>(Func<Task<T>> action)
+    {
+        ShowActivityIndicator();
+
+        try
+        {
+            return await action();
+        }
+        finally
+        {
+            HideActivityIndicator();
+        }
     }
 
     #endregion

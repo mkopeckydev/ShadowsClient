@@ -20,15 +20,16 @@ public partial class ActivityView : BaseContentPage
 
     public override async Task ReloadDataAsync()
     {
-        ShowActivityIndicator();
-
         _loading = true;
 
-        lwActivities.ItemsSource = await ServerApi.GetCharacterActivityListAsync(App.CharacterData);
-
-        _loading = false;
-
-        HideActivityIndicator();
+        try
+        {
+            lwActivities.ItemsSource = await RunBusyAsync(() => ServerApi.GetCharacterActivityListAsync(App.CharacterData));
+        }
+        finally
+        {
+            _loading = false;
+        }
     }
 
     private void CheckBox5_CheckedChanged(object sender, CheckedChangedEventArgs e)
@@ -91,11 +92,7 @@ public partial class ActivityView : BaseContentPage
             a.Checked1 = ch.IsChecked;
         }
 
-        ShowActivityIndicator();
-
-        await ServerApi.SaveCharacterActivityAsync(a, App.CharacterData);
-
-        HideActivityIndicator();
+        await RunBusyAsync(() => ServerApi.SaveCharacterActivityAsync(a, App.CharacterData));
     }
 
     private async void pageHeader_RefreshClicked(object sender, EventArgs e)
@@ -104,22 +101,21 @@ public partial class ActivityView : BaseContentPage
 
         if (!c) return;
 
-        ShowActivityIndicator();
-
-        var list = await ServerApi.GetCharacterActivityListAsync(App.CharacterData);
-
-        foreach (CharacterActivity i in list)
+        await RunBusyAsync(async () =>
         {
-            i.Checked1 = false;
-            i.Checked2 = false;
-            i.Checked3 = false;
-            i.Checked4 = false;
-            i.Checked5 = false;
+            var list = await ServerApi.GetCharacterActivityListAsync(App.CharacterData);
 
-            await ServerApi.SaveCharacterActivityAsync(i, App.CharacterData);
-        }
+            foreach (CharacterActivity i in list)
+            {
+                i.Checked1 = false;
+                i.Checked2 = false;
+                i.Checked3 = false;
+                i.Checked4 = false;
+                i.Checked5 = false;
 
-        HideActivityIndicator();
+                await ServerApi.SaveCharacterActivityAsync(i, App.CharacterData);
+            }
+        });
 
         await ReloadDataAsync();
     }

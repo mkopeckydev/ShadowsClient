@@ -61,17 +61,17 @@ public partial class CharacterList : BaseContentPage
     private async void Login(CharacterData data)
     {
         SessionData sessionData = new SessionData();
+        bool loginOk = false;
 
-        ShowActivityIndicator();
-
-        var loginOk = await ServerApi.LoginAsync(data);
-
-        if (loginOk)
+        await RunBusyAsync(async () =>
         {
-            sessionData.Skils = await ServerApi.SkillListAsync(data);
-        }
+            loginOk = await ServerApi.LoginAsync(data);
 
-        HideActivityIndicator();
+            if (loginOk)
+            {
+                sessionData.Skils = await ServerApi.SkillListAsync(data);
+            }
+        });
 
         App.SetCharacter(data, sessionData);
 
