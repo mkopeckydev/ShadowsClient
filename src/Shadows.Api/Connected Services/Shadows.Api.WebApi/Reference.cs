@@ -28,8 +28,6 @@ namespace Shadows.Api.WebApi
         
         private string CharacterNameField;
         
-        private bool CharacterIsDeadField;
-        
         private string SkillField;
         
         private string SkillLevelField;
@@ -101,20 +99,7 @@ namespace Shadows.Api.WebApi
             }
         }
         
-        [System.Runtime.Serialization.DataMemberAttribute(IsRequired=true, Order=5)]
-        public bool CharacterIsDead
-        {
-            get
-            {
-                return this.CharacterIsDeadField;
-            }
-            set
-            {
-                this.CharacterIsDeadField = value;
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=6)]
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=5)]
         public string Skill
         {
             get
@@ -127,7 +112,7 @@ namespace Shadows.Api.WebApi
             }
         }
         
-        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=7)]
+        [System.Runtime.Serialization.DataMemberAttribute(EmitDefaultValue=false, Order=6)]
         public string SkillLevel
         {
             get
@@ -140,7 +125,7 @@ namespace Shadows.Api.WebApi
             }
         }
         
-        [System.Runtime.Serialization.DataMemberAttribute(IsRequired=true, Order=8)]
+        [System.Runtime.Serialization.DataMemberAttribute(IsRequired=true, Order=7)]
         public int SkillLevelBonus
         {
             get

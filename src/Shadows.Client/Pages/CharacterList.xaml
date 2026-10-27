@@ -22,9 +22,9 @@
 
         <StackLayout Grid.Row="2" x:Name="stCharacters" VerticalOptions="Fill"></StackLayout>
 
-        <StackLayout Grid.Row="3" Orientation="Vertical" VerticalOptions="End">
+        <StackLayout Grid.Row="3" Orientation="Vertical" VerticalOptions="End" HorizontalOptions="Center">
             <ActivityIndicator x:Name="aiLoginPage" />
-            <adMob:MTAdView x:Name="adBanner" AdsFailedToLoad="adBanner_AdsFailedToLoad" Margin="5" HeightRequest="60"></adMob:MTAdView>
+            <adMob:MTAdView x:Name="adBanner" AdsFailedToLoad="adBanner_AdsFailedToLoad" HeightRequest="60"></adMob:MTAdView>
             <Label x:Name="lblVersion" Text="Verze" Style="{StaticResource footerText}" />
         </StackLayout>
 

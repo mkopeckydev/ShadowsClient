@@ -71,18 +71,42 @@
     </Style>
 
     <!-- buttons -->
-    <Style ApplyToDerivedTypes="True" TargetType="Button">
+    <Style x:Key="buttonBase" TargetType="Button">
         <Setter Property="FontFamily" Value="Calibri" />
         <Setter Property="FontSize" Value="16" />
         <Setter Property="Margin" Value="1" />
         <Setter Property="FontAttributes" Value="Bold" />
-        <Setter Property="BorderWidth" Value="0" />
+        <Setter Property="BorderWidth" Value="1" />
         <Setter Property="BorderColor" Value="{StaticResource BorderColor}" />
         <Setter Property="BackgroundColor" Value="{StaticResource ButtonBackgound}" />
-        <Setter Property="CornerRadius" Value="8" />
+        <Setter Property="CornerRadius" Value="10" />
         <Setter Property="TextColor" Value="{StaticResource ButtonColor}" />
+        <Setter Property="VisualStateManager.VisualStateGroups">
+            <VisualStateGroupList>
+                <VisualStateGroup Name="CommonStates">
+                    <VisualState Name="Normal" />
+                    <VisualState Name="PointerOver">
+                        <VisualState.Setters>
+                            <Setter Property="Opacity" Value="0.9" />
+                        </VisualState.Setters>
+                    </VisualState>
+                    <VisualState Name="Pressed">
+                        <VisualState.Setters>
+                            <Setter Property="Scale" Value="0.96" />
+                            <Setter Property="Opacity" Value="0.8" />
+                        </VisualState.Setters>
+                    </VisualState>
+                    <VisualState Name="Disabled">
+                        <VisualState.Setters>
+                            <Setter Property="Opacity" Value="0.45" />
+                        </VisualState.Setters>
+                    </VisualState>
+                </VisualStateGroup>
+            </VisualStateGroupList>
+        </Setter>
     </Style>
-    <Style x:Key="standardButton" TargetType="Button">
+    <Style ApplyToDerivedTypes="True" TargetType="Button" BasedOn="{StaticResource buttonBase}" />
+    <Style x:Key="standardButton" TargetType="Button" BasedOn="{StaticResource buttonBase}">
         <Setter Property="HeightRequest" Value="32" />
         <Setter Property="Padding" Value="5,1,5,1" />
     </Style>
@@ -91,7 +115,7 @@
         <Setter Property="HorizontalOptions" Value="Center" />
         <Setter Property="Margin" Value="1,1,1,6" />
     </Style>
-    <Style x:Key="thinButton" TargetType="Button">
+    <Style x:Key="thinButton" TargetType="Button" BasedOn="{StaticResource buttonBase}">
         <Setter Property="HeightRequest" Value="28" />
         <Setter Property="Padding" Value="1,1,1,1" />
     </Style>
@@ -106,6 +130,30 @@
         <Setter Property="HorizontalOptions" Value="Center" />
         <Setter Property="VerticalOptions" Value="Center" />
         <Setter Property="Aspect" Value="Fill" />
+        <Setter Property="CornerRadius" Value="8" />
+        <Setter Property="VisualStateManager.VisualStateGroups">
+            <VisualStateGroupList>
+                <VisualStateGroup Name="CommonStates">
+                    <VisualState Name="Normal" />
+                    <VisualState Name="PointerOver">
+                        <VisualState.Setters>
+                            <Setter Property="Opacity" Value="0.8" />
+                        </VisualState.Setters>
+                    </VisualState>
+                    <VisualState Name="Pressed">
+                        <VisualState.Setters>
+                            <Setter Property="Scale" Value="0.9" />
+                            <Setter Property="Opacity" Value="0.7" />
+                        </VisualState.Setters>
+                    </VisualState>
+                    <VisualState Name="Disabled">
+                        <VisualState.Setters>
+                            <Setter Property="Opacity" Value="0.4" />
+                        </VisualState.Setters>
+                    </VisualState>
+                </VisualStateGroup>
+            </VisualStateGroupList>
+        </Setter>
     </Style>
     <Style x:Key="popupButton" TargetType="Button" BasedOn="{StaticResource standardButton}">
         <Setter Property="Margin" Value="3" />
