@@ -49,16 +49,17 @@ public partial class CharacterList : BaseContentPage
 
             if (data.IsNew)
             {
+                App.ClearCharacter();
                 await AppShell.ShellRouteAsync(AppShell.RouteCharacterDetail);
             }
             else
             {
-                Login(data);
+                await Login(data);
             }
         }
     }
 
-    private async void Login(CharacterData data)
+    private async Task Login(CharacterData data)
     {
         SessionData sessionData = new SessionData();
         bool loginOk = false;

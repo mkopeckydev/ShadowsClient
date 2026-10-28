@@ -18,8 +18,8 @@
 		<ApplicationIdGuid>9D89AA95-42B7-4827-A543-DBED868BF1C8</ApplicationIdGuid>
 
 		<!-- Versions -->
-		<ApplicationDisplayVersion>1.4.5</ApplicationDisplayVersion>
-		<ApplicationVersion>32</ApplicationVersion>
+		<ApplicationDisplayVersion>1.4.6</ApplicationDisplayVersion>
+		<ApplicationVersion>33</ApplicationVersion>
 
 		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'android'">26.0</SupportedOSPlatformVersion>
 		<GenerateAppInstallerFile>False</GenerateAppInstallerFile>

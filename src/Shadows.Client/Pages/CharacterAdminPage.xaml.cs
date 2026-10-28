@@ -12,7 +12,10 @@ public partial class CharacterAdminPage : BaseContentPage
     {
         InitializeComponent();
         InitActivityIndicator(pageHeader);
+    }
 
+    public override async Task ReloadDataAsync()
+    {
         CharacterData d = App.CharacterData;
         lblCharacterName.Text = d.DisplayName;
     }
